@@ -11,12 +11,12 @@ import utils.TipoEncomiendas;
  *
  * @author Luizzz
  */
-public class encomienda extends servicio {
+public class Encomienda extends Servicio {
     private TipoEncomiendas tipoEncomienda;
     private int cantidadProductos;
     private double peso;
 
-    public encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
         super(id, ruta, fecha, conductorAsignado, costo, tipoServicio, formaDePago);
         this.tipoEncomienda = tipoEncomienda;
         this.cantidadProductos = cantidadProductos;

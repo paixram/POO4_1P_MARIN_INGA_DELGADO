@@ -8,9 +8,9 @@ package usuarios;
  *
  * @author Luizzz
  */
-public class conductor extends usuario {
+public class Conductor extends Usuario {
     
-    public conductor(String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, char tipoUsuario) {
+    public Conductor(String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, char tipoUsuario) {
         super(numCedula, nombres, apellidos, user, contrasenia, numCelular, tipoUsuario);
     }
     

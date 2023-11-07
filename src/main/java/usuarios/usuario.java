@@ -6,18 +6,15 @@ package usuarios;
 
 /**
  *
- * @author Luizzz
+ * @author José Marin
  */
-public class usuario {
-    private String numCedula;
-    private String nombres;
-    private String apellidos;
-    private String user;
-    private String contrasenia;
-    private String numCelular;
+public class Usuario {
+    
+    private String numCedula, nombres, apellidos, user, contrasenia, numCelular;
     private char tipoUsuario;
-
-    public usuario(String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, char tipoUsuario) {
+    
+    //constructor
+    public Usuario(String numCedula,String nombres,String apellidos,String user,String contrasenia,String numCelular,char tipoUsuario){
         this.numCedula = numCedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -26,60 +23,56 @@ public class usuario {
         this.numCelular = numCelular;
         this.tipoUsuario = tipoUsuario;
     }
-
-    public String getNumCedula() {
+    
+    /*
+    public void consultarServicios(){
+        
+    }
+    */
+    
+    //getters
+    public String getNumCedula(){
         return numCedula;
     }
-
-    public String getNombres() {
+    public String getNombres(){
         return nombres;
     }
-
-    public String getApellidos() {
+    public String getApellidos(){
         return apellidos;
     }
-
-    public String getUser() {
+    public String getUser(){
         return user;
     }
-
-    public String getContrasenia() {
+    public String getContrasenia(){
         return contrasenia;
     }
-
-    public String getNumCelular() {
+    public String getNumCelular(){
         return numCelular;
     }
-
-    public char getTipoUsuario() {
+    public char getTipoUsuario(){
         return tipoUsuario;
     }
-
-    public void setNumCedula(String numCedula) {
+    
+    //setters
+    public void setNumCedula(String numCedula){
         this.numCedula = numCedula;
     }
-
-    public void setNombres(String nombres) {
+    public void setNombres(String nombres){
         this.nombres = nombres;
     }
-
-    public void setApellidos(String apellidos) {
+    public void setApellidos(String apellidos){
         this.apellidos = apellidos;
     }
-
-    public void setUser(String user) {
+    public void setUser(String user){
         this.user = user;
     }
-
-    public void setContrasenia(String contrasenia) {
+    public void setContrasenia(String contrasenia){
         this.contrasenia = contrasenia;
     }
-
-    public void setNumCelular(String numCelular) {
+    public void setNumCelular(String numCelular){
         this.numCelular = numCelular;
     }
-
-    public void setTipoUsuario(char tipoUsuario) {
+    public void setTipoUsuario(char tipoUsuario){
         this.tipoUsuario = tipoUsuario;
     }
     

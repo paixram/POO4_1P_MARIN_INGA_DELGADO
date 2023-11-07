@@ -9,7 +9,7 @@ import utils.FormasPago;
  *
  * @author Luizzz
  */
-public class servicio {
+public class Servicio {
     private int id;
     private /*Ruta*/ String ruta;
     private /*Date*/ String fecha;
@@ -18,7 +18,7 @@ public class servicio {
     private char tipoServicio;
     private FormasPago formaDePago;
 
-    public servicio(int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+    public Servicio(int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
         this.id = id;
         this.ruta = ruta;
         this.fecha = fecha;

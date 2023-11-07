@@ -10,11 +10,11 @@ import utils.FormasPago;
  *
  * @author Luizzz
  */
-public class taxi extends servicio {
+public class Taxi extends Servicio {
     
     public int numeroPersonas;
 
-    public taxi(int numeroPersonas, int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+    public Taxi(int numeroPersonas, int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
         super(id, ruta, fecha, conductorAsignado, costo, tipoServicio, formaDePago);
         this.numeroPersonas = numeroPersonas;
     }
