@@ -9,9 +9,9 @@ package Sistema;
  * @author José Miguel
  */
 class date {
-    public int dia;
-    public int mes;
-    public int anio;
+    private int dia;
+    private int mes;
+    private int anio;
 
     public int getDia() {
         return dia;
