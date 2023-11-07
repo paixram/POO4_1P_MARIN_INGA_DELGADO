@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package usuarios;
+import servicios.Servicio;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +16,7 @@ public class Cliente extends Usuario{
     private String numTarjetaCredito;
     private ArrayList<Servicio> servicios;
     
+    /*
     public Cliente(int edad, String numTarjetaCredito, Servicio s){
         servicios = new ArrayList<>();
         this.edad = edad;
@@ -43,5 +45,5 @@ public class Cliente extends Usuario{
     public void setServicios(Servicio s){
         servicios.add(s);
     }
-    
+    */
 }
