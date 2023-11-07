@@ -16,12 +16,11 @@ public class Cliente extends Usuario{
     private String numTarjetaCredito;
     private ArrayList<Servicio> servicios;
     
-    /*
-    public Cliente(int edad, String numTarjetaCredito, Servicio s){
-        servicios = new ArrayList<>();
+    public Cliente(int edad, String numTarjetaCredito, ArrayList<Servicio> servicios, String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, char tipoUsuario) {
+        super(numCedula, nombres, apellidos, user, contrasenia, numCelular, tipoUsuario);
         this.edad = edad;
         this.numTarjetaCredito = numTarjetaCredito;
-        servicios.add(s);
+        this.servicios = servicios;
     }
     
     //getters
@@ -45,5 +44,5 @@ public class Cliente extends Usuario{
     public void setServicios(Servicio s){
         servicios.add(s);
     }
-    */
+    
 }

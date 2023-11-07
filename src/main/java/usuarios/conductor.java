@@ -3,20 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package usuarios;
+import servicios.Servicio;
 import Vehiculo.Vehiculo;
+
+import java.util.ArrayList;
 /**
  *
  * @author Luizzz
  */
 public class Conductor extends Usuario {
     
-    public Conductor(String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, char tipoUsuario) {
-        super(numCedula, nombres, apellidos, user, contrasenia, numCelular, tipoUsuario);
-    
-    }
     private String numLicencia;
     private String estado;
     private Vehiculo vehiculo;
+    private ArrayList<Servicio> servicio;
+
+    public Conductor(String numLicencia, String estado, Vehiculo vehiculo, ArrayList<Servicio> servicio, String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, char tipoUsuario) {
+        super(numCedula, nombres, apellidos, user, contrasenia, numCelular, tipoUsuario);
+        this.numLicencia = numLicencia;
+        this.estado = estado;
+        this.vehiculo = vehiculo;
+        this.servicio = servicio;
+    }
 
     public String getNumLicencia() {
         return numLicencia;
