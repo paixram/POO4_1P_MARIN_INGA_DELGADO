@@ -19,7 +19,7 @@ public class Vehiculo{
     public TipoVehiculo tipo;
     
     static ArrayList<Vehiculo> getVehiculos(){
-        return ArrayList<Vehiculo>vehiculos;
+        return new ArrayList<>();
     }
     public int getCodigoVehiculo() {
         return codigoVehiculo;
