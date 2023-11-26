@@ -127,10 +127,10 @@ public class Sistema {
         Conductor conductor= new Conductor();
         switch (opcion2) {
             case 1:
-                conductor.consultarServicioAsignado();
+                conductor.consultarServicios();
                 break;
             case 2:
-                conductor.mostrarDatosVehiculo();
+                conductor.verificarDatVehiculo();
                 break;
             default:
                 System.out.println("Opción no válida, vuelva a intentar");
