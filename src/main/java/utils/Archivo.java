@@ -177,19 +177,13 @@ public class Archivo {
                     // recorrer la lista de valores y comparar con OR
                      
                     for(Object values_conditionals : values_compare) {
-                        System.out.println("Dataa: " + dataaa + " valor_comparado: " + values_conditionals);
                         if(dataaa.equals(values_conditionals)) {
                             // si es igual se rompe el ciclo porque no hace falta buscar mas y se agrega a un set para comprobar los demas valores
                             // comprobar si set esta vacio
                             if(data_checked.isEmpty()) {
                                 data_checked.add(data_linebline);
-                                //System.out.println("ui");
-                                //System.out.println(data_checked);
                             }else{
-                                //data_pre_check = new HashSet();
-                                //System.out.println("Ui2");
                                 data_pre_check.add(data_linebline);
-                                //System.out.println(data_pre_check);
                                  
                             }
                              
@@ -203,9 +197,7 @@ public class Archivo {
                 }
                 
             }
-            System.out.println(data_checked + " XD " + data_pre_check);
-            data_checked.retainAll(data_pre_check);
-            System.out.println(data_checked + " XD " + data_pre_check);
+            
             
             if(data_checked.size() == 1) {
                 
