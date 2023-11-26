@@ -9,18 +9,18 @@ package Vehiculo;
  * @author José Miguel
  */
 import utils.TipoVehiculo;
+import java.util.ArrayList;
+
 public class Vehiculo{
     private int codigoVehiculo;
     private String placa;
     public String modelo;
     public String marca;
     public TipoVehiculo tipo;
-    public Vehiculo(String modelo, String marca, TipoVehiculo tipo){
-        this.modelo=modelo;
-        this.marca=marca;
-        this.tipo=tipo;
+    
+    static ArrayList<Vehiculo> getVehiculos(){
+        return ArrayList<Vehiculo>vehiculos;
     }
-
     public int getCodigoVehiculo() {
         return codigoVehiculo;
     }
@@ -68,6 +68,7 @@ public class Vehiculo{
         this.marca = marca;
         this.tipo = tipo;
     }
+    
     
     }
 
