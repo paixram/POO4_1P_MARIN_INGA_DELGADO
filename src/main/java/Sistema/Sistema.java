@@ -3,16 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Sistema;
+import Servicio.Servicio;
 import Usuario.Usuario;
 import java.util.ArrayList;
 import Vehiculo.*;
-<<<<<<< HEAD
+import java.util.HashMap;
+import utils.Archivo;
+
 import Servicio.*;
 import Usuario.*;
 import java.util.HashMap;
-=======
+
 import Servicio.Servicio;
->>>>>>> 5c5445f9db31475c0d9694b0891045a41c30bc98
+
 import java.util.Scanner;
 import utils.*;
 import Usuario.Cliente;
@@ -31,7 +34,7 @@ public class Sistema {
         vehiculos = new ArrayList<>();
         
         
-        HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"cedula", "0549459"});
+        HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"cedula", "0945698598"});
         Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Conductores.txt", where, Servicio.class);
     }
     public static ArrayList<Usuario> getUsuarios() {
@@ -117,8 +120,8 @@ public class Sistema {
     
     static Usuario buscarUsuario(String nombre, String contraseña) {
         
-    }*/
-=======
+    }
+
         
         } else {
             System.out.println("Credenciales incorrectas. Intenta de nuevo.");
@@ -145,7 +148,6 @@ public class Sistema {
                 "1234567890", TipoUsuario.C);
         switch (opcion) {
             case 1:
-<<<<<<< HEAD
                 //solicitarServicioTaxi();
                 break;
             case 2:
@@ -158,7 +160,7 @@ public class Sistema {
                 System.out.println("Opción no válida, vuelva a intentar");
     }     
     }
-=======
+
                 cliente.solicitarServicioTaxi();
                 break;
             case 2:
@@ -184,11 +186,9 @@ public class Sistema {
                 break;
             default:
                 System.out.println("Opción no válida, vuelva a intentar");
-        }
+        }*/
     }
 
-}
->>>>>>> 5c5445f9db31475c0d9694b0891045a41c30bc98
-}
-        
+
+      
        
