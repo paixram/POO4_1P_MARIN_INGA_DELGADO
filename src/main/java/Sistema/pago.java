@@ -13,14 +13,14 @@ public class Pago {
     private date fechaPago;
     private int idServicio;
     private Cliente cliente;
-    private double valoraPagar;
+    private double valorPagar;
     
-    public Pago(int numeroIDPago,date fechaPago,int idServicio,Cliente cliente,double valoraPagar ){
+    public Pago(int numeroIDPago,date fechaPago,int idServicio,Cliente cliente,double valorPagar ){
         this.numeroIDPago=numeroIDPago;
         this.fechaPago=fechaPago;
         this.idServicio=idServicio;
         this.cliente=cliente;
-        this.valoraPagar=valoraPagar;
+        this.valorPagar=valorPagar;
     }
 
     public int getNumeroIDPago() {
@@ -39,8 +39,8 @@ public class Pago {
         return cliente;
     }
 
-    public double getValoraPagar() {
-        return valoraPagar;
+    public double getValorPagar() {
+        return valorPagar;
     }
 
     public void setNumeroIDPago(int numeroIDPago) {
@@ -59,8 +59,8 @@ public class Pago {
         this.cliente = cliente;
     }
 
-    public void setValoraPagar(double valoraPagar) {
-        this.valoraPagar = valoraPagar;
+    public void setValorPagar(double valoraPagar) {
+        this.valorPagar = valoraPagar;
     }
     
 }
