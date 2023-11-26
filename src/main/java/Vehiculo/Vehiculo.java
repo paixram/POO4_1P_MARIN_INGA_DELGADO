@@ -12,9 +12,9 @@ import utils.TipoVehiculo;
 public class Vehiculo{
     private int codigoVehiculo;
     private String placa;
-    private String modelo;
-    private String marca;
-    private TipoVehiculo tipo;
+    public String modelo;
+    public String marca;
+    public TipoVehiculo tipo;
     public Vehiculo(String modelo, String marca, TipoVehiculo tipo){
         this.modelo=modelo;
         this.marca=marca;
@@ -58,6 +58,14 @@ public class Vehiculo{
     }
 
     public void setTipo(TipoVehiculo tipo) {
+        this.tipo = tipo;
+    }
+
+    public Vehiculo(int codigoVehiculo, String placa, String modelo, String marca, TipoVehiculo tipo) {
+        this.codigoVehiculo = codigoVehiculo;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.marca = marca;
         this.tipo = tipo;
     }
     

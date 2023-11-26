@@ -13,7 +13,7 @@ import utils.TipoEncomiendas;
  */
 
 
-public class Encomienda extends servicio {
+public class Encomienda extends Servicio {
     
     private TipoEncomiendas tipoEncomienda;
     private int cantidadProductos;
