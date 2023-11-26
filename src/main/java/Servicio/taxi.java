@@ -8,6 +8,8 @@ import Usuario.Conductor;
 import java.util.Date;
 import utils.FormasPago;
 import java.util.Random;
+import java.util.Scanner;
+import utils.Archivo;
 
 /**
  *
@@ -19,8 +21,8 @@ public class Taxi extends Servicio {
     
     final public double cpk = 0.50;
 
-    public Taxi(int numeroPersonas, int id, String desde, String hasta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
-        super(id, desde, hasta, fecha, conductorAsignado, costo, tipoServicio, formaDePago);
+    public Taxi(int numeroPersonas, int id, String desde, String hasta, Date fecha, String hora, Conductor conductorAsignado, char tipoServicio, FormasPago formaDePago) {
+        super(id, desde, hasta, fecha, hora, conductorAsignado, tipoServicio, formaDePago);
         this.numeroPersonas = numeroPersonas;
     }
     
@@ -38,13 +40,27 @@ public class Taxi extends Servicio {
         valorPagar += cpk * kms;
         System.out.println("Subtotal: " + valorPagar);
         
-        if(super.getFormaDePago() == FormasPago.TARJETA) {
-            valorPagar += valorPagar + (valorPagar * 0.15);
-        }
-        
-        System.out.println("Valor final: " + valorPagar);
+        super.setCosto(valorPagar);
         
         return valorPagar;
+    }
+    
+    public double calcularCosto(String TC) {
+        double subtotal = this.calcularCosto();
+        double valorFinal = 0;
+        
+        valorFinal += subtotal + (subtotal * 0.10);
+        valorFinal += valorFinal + (valorFinal * 0.15);
+        
+        super.setCosto(valorFinal);
+        
+        return valorFinal;
+    }
+    
+    public void guardarViaje(String cedula) {
+        String viaje_data = String.valueOf(super.getId()) + "," + String.valueOf(this.numeroPersonas) + "," + String.valueOf(super.getCosto() / this.cpk) + "," + String.valueOf(super.getCosto());
+    
+        Archivo.EscribirArchivo("../Database/Viajes.txt", viaje_data);
     }
     
     
