@@ -1,21 +1,3 @@
 numeroServicio,tipoServicio,cedulaCliente,nombreConductor,desde,hasta,fecha,hora
 28383,T,0936372823,Luis Meza,Samanes 4,Ceibos Norte,3/11/2023,17:30
 29875,E,0987654321,Ana Gomez,Kennedy,Norte de la Ciudad,5/4/2023,09:45
-28761,T,0765432198,Carlos Perez,Alborada,Sauces,8/9/2023,14:20
-29544,E,0912345678,Maria Rodriguez,Urdesa,Guayacanes,12/6/2023,20:10
-28399,T,0845678901,Juan Silva,Centro,Sauces,10/2/2023,18:55
-29001,E,0954321765,Elena Fernandez,Kennedy,Norte de la Ciudad,7/8/2023,11:40
-28456,T,0876543210,Andres Lopez,Alborada,Guayacanes,9/5/2023,16:15
-29987,E,0932109876,Sofia Martinez,Samanes,Norte de la Ciudad,11/10/2023,08:00
-28677,T,0923456789,Diego Chavez,Alborada,Sauces,4/3/2023,13:25
-29234,E,0801234567,Laura Gonzalez,Urdesa,Centro,6/12/2023,19:50
-28890,T,0998765432,Pablo Ramirez,Samanes,Guayacanes,1/1/2023,21:15
-29789,E,0976543210,Ana Lopez,Kennedy,Centro,2/7/2023,10:30
-28563,T,0890123456,Luisa Sanchez,Alborada,Sauces,9/8/2023,15:40
-29421,E,0945678901,Carlos Ruiz,Urdesa,Norte de la Ciudad,5/5/2023,22:05
-28123,T,0987654321,Maria Perez,Centro,Guayacanes,7/4/2023,12:20
-29345,E,0876543210,Juanita Garcia,Kennedy,Sauces,11/11/2023,07:15
-28901,T,0823456789,Andrea Flores,Samanes,Centro,10/9/2023,16:30
-29654,E,0912345678,Pedro Rodriguez,Urdesa,Norte de la Ciudad,3/6/2023,09:55
-28234,T,0856789012,Jorge Gomez,Alborada,Guayacanes,12/2/2023,14:45
-29123,E,0965432109,Julia Martinez,Kennedy,Sauces,8/10/2023,18:00

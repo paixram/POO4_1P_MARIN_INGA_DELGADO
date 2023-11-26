@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import Vehiculo.*;
 import Servicio.*;
 import Usuario.*;
+import java.util.HashMap;
 import java.util.Scanner;
 import utils.*;
 /**
@@ -22,6 +23,10 @@ public class Sistema {
         usuarios = new ArrayList<>();
         servicios = new ArrayList<>();
         vehiculos = new ArrayList<>();
+        
+        
+        HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"cedula", "0549459"});
+        Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Conductores.txt", where, Servicio.class);
     }
     public static ArrayList<Usuario> getUsuarios() {
         return usuarios;
@@ -52,10 +57,11 @@ public class Sistema {
         this.usuarios=usuarios;
         this.vehiculos=vehiculos;
         this.servicios=servicios;
+        
     }
     
     
-    static void validarAcceso(){
+    /*static void validarAcceso(){
         Scanner sc= new Scanner(System.in);
         System.out.print("USUARIO: ");
         String usuario = sc.nextLine();
@@ -65,36 +71,35 @@ public class Sistema {
         usuarios = new ArrayList<>();
 
         for (String linea : lineas) {
-        String[] datos = linea.split(",");
-        String tipoUsuario = datos[0];
+            String[] datos = linea.split(",");
+            String tipoUsuario = datos[0];
 
-        if (tipoUsuario.equals("C")) {
-            // Se crea objeto cliente y se lo agrega a la lista de usuarios
-            Cliente cliente = new Cliente(Integer.parseInt(datos[7]), datos[8], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], TipoUsuario.CLIENTE);
-            usuarios.add(cliente);
-        } else if (tipoUsuario.equals("R")) {
-            // Se crea objeto conductor y se lo agrega a la lista de usuarios
-            Conductor conductor = new Conductor(datos[7], EstadoConductor.valueOf(datos[8]), vehiculo, datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], TipoUsuario.CONDUCTOR);
-            usuarios.add(conductor);
+            if (tipoUsuario.equals("C")) {
+                // Se crea objeto cliente y se lo agrega a la lista de usuarios
+                Cliente cliente = new Cliente(Integer.parseInt(datos[7]), datos[8], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], TipoUsuario.CLIENTE);
+                usuarios.add(cliente);
+            } else if (tipoUsuario.equals("R")) {
+                // Se crea objeto conductor y se lo agrega a la lista de usuarios
+                Conductor conductor = new Conductor(datos[7], EstadoConductor.valueOf(datos[8]), vehiculo, datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], TipoUsuario.CONDUCTOR);
+                usuarios.add(conductor);
+            }
+
+            
         }
-    }
-        Usuario usuarioEncontrado = buscarUsuario(usuario);
-
+        
+        Usuario usuarioEncontrado = buscarUsuario(usuario, contraseña);
         if (usuarioEncontrado != null && usuarioEncontrado.getContraseña().equals(contraseña)) {
             System.out.println("Acceso concedido. ¡Bienvenido, " + usuarioEncontrado.getNombres() + "!");
-        
-        } else {
-            System.out.println("Credenciales incorrectas. Intenta de nuevo.");
-    }        
-    }
-        Usuario usuarioEncontrado = buscarUsuario(usuario);
 
-        if (usuarioEncontrado != null && usuarioEncontrado.getContraseña().equals(contraseña)) {
-            System.out.println("Acceso concedido. ¡Bienvenido, " + usuarioEncontrado.getNombres() + "!");
-        
         } else {
             System.out.println("Credenciales incorrectas. Intenta de nuevo.");
+        }   
     }
+    
+    static Usuario buscarUsuario(String nombre, String contraseña) {
+        
+    }*/
+    
     static void guardarDatosCliente(){
     
     }
@@ -115,17 +120,18 @@ public class Sistema {
         
         switch (opcion) {
             case 1:
-                solicitarServicioTaxi();
+                //solicitarServicioTaxi();
                 break;
             case 2:
-                solicitarServicioEncomienda();
+                //solicitarServicioEncomienda();
                 break;
             case 3:
-                consultarServicios();
+                //consultarServicios();
                 break;
             default:
                 System.out.println("Opción no válida, vuelva a intentar");
-    }        
+    }     
+    }
 }
         
        

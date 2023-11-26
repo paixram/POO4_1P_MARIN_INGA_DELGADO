@@ -9,6 +9,6 @@ package utils;
  * @author José Marin
  */
 public enum TipoServicio {
-    TAXI,
-    ENCOMIENDA
+    T,
+    E
 }
