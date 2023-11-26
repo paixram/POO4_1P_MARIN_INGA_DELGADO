@@ -8,14 +8,14 @@ import usuarios.Cliente;
  *
  * @author José Miguel
  */
-public class pago {
+public class Pago {
     private int numeroIDPago;
     private date fechaPago;
     private int idServicio;
     private Cliente cliente;
     private double valoraPagar;
     
-    public pago(int numeroIDPago,date fechaPago,int idServicio,Cliente cliente,double valoraPagar ){
+    public Pago(int numeroIDPago,date fechaPago,int idServicio,Cliente cliente,double valoraPagar ){
         this.numeroIDPago=numeroIDPago;
         this.fechaPago=fechaPago;
         this.idServicio=idServicio;
