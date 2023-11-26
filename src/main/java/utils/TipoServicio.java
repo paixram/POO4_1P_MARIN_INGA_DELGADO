@@ -6,9 +6,9 @@ package utils;
 
 /**
  *
- * @author José Miguel
+ * @author José Marin
  */
-public enum TipoUsuario {
-    C,
-    R
+public enum TipoServicio {
+    TAXI,
+    ENCOMIENDA
 }

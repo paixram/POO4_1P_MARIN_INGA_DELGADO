@@ -7,6 +7,7 @@ package Servicio;
 import utils.FormasPago;
 import java.util.Date;
 import Usuario.Conductor;
+import utils.TipoServicio;
 
 /**
  *
@@ -19,10 +20,10 @@ public class Servicio {
     private /*Date*/ Date fecha;
     private Conductor conductorAsignado;
     private double costo;
-    private char tipoServicio;
+    private TipoServicio tipoServicio;
     private FormasPago formaDePago;
 
-    public Servicio(int id, String desde, String hasta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+    public Servicio(int id, String desde, String hasta, Date fecha, Conductor conductorAsignado, double costo, TipoServicio tipoServicio, FormasPago formaDePago) {
         this.id = id;
         this.desde = desde;
         this.hasta = hasta;
@@ -62,7 +63,7 @@ public class Servicio {
         this.costo = costo;
     }
 
-    public void setTipoServicio(char tipoServicio) {
+    public void setTipoServicio(TipoServicio tipoServicio) {
         this.tipoServicio = tipoServicio;
     }
 
@@ -94,7 +95,7 @@ public class Servicio {
         return costo;
     }
 
-    public char getTipoServicio() {
+    public TipoServicio getTipoServicio() {
         return tipoServicio;
     }
 

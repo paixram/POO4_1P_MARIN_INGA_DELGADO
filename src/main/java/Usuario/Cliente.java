@@ -4,13 +4,12 @@
  */
 
 package Usuario;
-import Servicio.Servicio;
+import Servicio.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import utils.TipoUsuario;
-import utils.TipoEncomiendas;
-import utils.Archivo;
+import utils.*;
+import utils.TipoVehiculo;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,9 +55,9 @@ public class Cliente extends Usuario{
     
     public void solicitarServicioTaxi(){
         System.out.println("Ingrese el origen: ");
-        String origenS_Taxi = sc.nextLine();
+        String origenS = sc.nextLine();
         System.out.println("Ingrese el destino: ");
-        String destinoS_Taxi = sc.nextLine();
+        String destinoS = sc.nextLine();
         
         System.out.println("Ingrese la fecha (formato dd/MM/yyyy): ");
         String inputDate = sc.nextLine();
@@ -69,25 +68,51 @@ public class Cliente extends Usuario{
             System.out.println("Formato de fecha inválido. Asegúrate de ingresar la fecha en formato dd/MM/yyyy.");
         }
         
-        //CONDUCTOR LUIS
+        System.out.println("Ingrese la hora: ");
+        String inputHora = sc.nextLine();
+        
+        //CONDUCTOR
         ArrayList<String> lineasArc = Archivo.leer("conductores.txt");
-        
-        
-        
-        //calcularCosto()
+        for (String lineas: lineasArc){
+            String[] datosConductor = lineas.split(",");
+            if (datosConductor[1].equals("D")){
+                ArrayList<String> lineasArc2 = Archivo.leer("vehículos.txt");
+                for (String l: lineasArc2){
+                    String[] datosVehiculo = l.split(",");
+                    if (datosVehiculo[0].equals(datosConductor[2])){
+                        if (datosVehiculo[5].equals("A")){
+                            String ident_conductor = datosConductor[0];
+                            
+                        }
+                    }
+                }
                 
-                
+            }
+        }
+                        
+        System.out.println("Ingrese un tipo de servicio");
+        String tipoServicio = sc.nextLine();
+        TipoServicio.valueOf(tipoServicio);
+        
+        System.out.println("Ingrese una forma de pago: ");
+        String forma_Pago = sc.nextLine();
+        FormasPago.valueOf(forma_Pago);
+        
         System.out.println("Ingrese el numero de personas a transportar: ");
         int numeroPersonas = sc.nextInt();
         sc.nextLine();
+        
+        
+        
+        
         
     }
     
     public void solicitarServicioEncomienda(){
         System.out.println("Ingrese el origen: ");
-        String origenS_Taxi = sc.nextLine();
+        String origenS = sc.nextLine();
         System.out.println("Ingrese el destino: ");
-        String destinoS_Taxi = sc.nextLine();
+        String destinoS = sc.nextLine();
         
         System.out.println("Ingrese la fecha (formato dd/MM/yyyy): ");
         String inputDate = sc.nextLine();
@@ -98,10 +123,55 @@ public class Cliente extends Usuario{
             System.out.println("Formato de fecha inválido. Asegúrate de ingresar la fecha en formato dd/MM/yyyy.");
         }
         
+        System.out.println("Ingrese la hora: ");
+        String inputHora = sc.nextLine();
+        
+        
+        //CONDUCTOR
+        ArrayList<String> lineasArc = Archivo.leer("conductores.txt");
+        for (String lineas: lineasArc){
+            String[] datosConductor = lineas.split(",");
+            if (datosConductor[1].equals("D")){
+                ArrayList<String> lineasArc2 = Archivo.leer("vehículos.txt");
+                for (String l: lineasArc2){
+                    String[] datosVehiculo = l.split(",");
+                    if (datosVehiculo[0].equals(datosConductor[2])){
+                        if (datosVehiculo[4].equals("M")){
+                            ArrayList<String> lineasArc3 = Archivo.leer("usuarios.txt");
+                            for (String l3: lineasArc3){
+                                String[] datosUsuario = l3.split(",");
+                                if (datosUsuario[0].equals(datosConductor[0]));
+                                    TipoUsuario tU = TipoUsuario.valueOf(datosUsuario[datosUsuario.length-1]);
+                                    EstadoConductor eC = EstadoConductor.valueOf(datosConductor[1]);
+                                    
+                                    String codigoVehiculo = datosConductor[2];        
+                                    Integer cVehiculo = Integer.parseInt(codigoVehiculo);
+                                    int id_code = (int)cVehiculo;
+                                    
+                                    TipoVehículo tV = TipoVehículo.valueOf(datosVehiculo[4]);
+                                    Vehiculo v = new Vehiculo(id_code,datosVehiculo[1],datosVehiculo[2],datosVehiculo[3],tV);
+                                    
+                                    Conductor c = new Conductor(datosUsuario[0],datosUsuario[1],datosUsuario[2],datosUsuario[3],datosUsuario[4],datosUsuario[5],tU,datosUsuario[0],eC,v);
+                                
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+                        
+        System.out.println("Ingrese un tipo de servicio");
+        String tipoServicio = sc.nextLine();
+        TipoServicio tipo_Servicio= TipoServicio.valueOf(tipoServicio);
+        
+        System.out.println("Ingrese una forma de pago: ");
+        String formaPago = sc.nextLine();
+        FormasPago forma_Pago = FormasPago.valueOf(formaPago);
         
         System.out.println("Ingrese el tipo de encomienda: ");
         String tipoEncomienda = sc.nextLine();
-        TipoEncomiendas.valueOf(tipoEncomienda);
+        TipoEncomiendas tipo_Encomienda = TipoEncomiendas.valueOf(tipoEncomienda);
         
         System.out.println("Ingrese la cantidad de productos: ");
         int cantidadProductos = sc.nextInt();
@@ -111,6 +181,12 @@ public class Cliente extends Usuario{
         double peso = sc.nextDouble();
         sc.nextLine();
         
+        ArrayList<String> lineaServicios = Archivo.leer("servicios.txt");
+        String[] datosUltLinea = lineaServicios.get(lineaServicios.size()-1).split(",");
+        String id_in = datosUltLinea[0];        
+        Integer identificador = Integer.parseInt(id_in);
+        int clave_id = (int)identificador;
+        Servicio s_encomienda = new ServicioTaxi(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,date,ident_conductor,tipo_Servicio,forma_Pago);
         
     }
     

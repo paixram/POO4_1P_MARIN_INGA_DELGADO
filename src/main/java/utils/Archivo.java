@@ -18,13 +18,7 @@ import java.util.ArrayList;
  * @author José Marin
  */
 public class Archivo {
-    
-    public static String nombreArchivo;
-    
-    public Archivo(String nombreArchivo){
-        this.nombreArchivo = nombreArchivo;
-    }
-    
+        
     public static ArrayList<String> leer(String nombreArchivo){
         ArrayList<String> lineas = new ArrayList<>();
         File archivo = null;

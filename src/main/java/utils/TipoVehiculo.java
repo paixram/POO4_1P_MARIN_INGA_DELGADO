@@ -9,8 +9,8 @@ package utils;
  * @author José Miguel
  */
 public enum TipoVehiculo {
-    AUTO,
-    MOTO  
+    A,
+    M  
 }
 
 
