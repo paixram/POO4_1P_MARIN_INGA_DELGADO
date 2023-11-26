@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package Usuario;
+
+import utils.TipoUsuario;
 
 /**
  *
@@ -10,26 +13,24 @@ package Usuario;
  */
 public abstract class Usuario {
     
-    protected String numCedula, nombres, apellidos, user, contrasenia, numCelular;
-    private char tipoUsuario;
+    protected String numCedula, nombres, apellidos,user, contrasenia, numCelular;
+    protected TipoUsuario tipoDeUsuario;
     
     //constructor
-    public Usuario(String numCedula,String nombres,String apellidos,String user,String contrasenia,String numCelular,char tipoUsuario){
+    public Usuario(String numCedula,String nombres,String apellidos,String user, String contrasenia,String numCelular,TipoUsuario tipoDeUsuario){
         this.numCedula = numCedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.user = user;
         this.contrasenia = contrasenia;
         this.numCelular = numCelular;
-        this.tipoUsuario = tipoUsuario;
+        this.tipoDeUsuario = tipoDeUsuario;
     }
     
-    /*
-    public void consultarServicios(){
+
+    public abstract void consultarServicios();
         
-    }
-    */
-    
+        
     //getters
     public String getNumCedula(){
         return numCedula;
@@ -49,8 +50,8 @@ public abstract class Usuario {
     public String getNumCelular(){
         return numCelular;
     }
-    public char getTipoUsuario(){
-        return tipoUsuario;
+    public TipoUsuario getTipoDeUsuario(){
+        return tipoDeUsuario;
     }
     
     //setters
@@ -72,8 +73,8 @@ public abstract class Usuario {
     public void setNumCelular(String numCelular){
         this.numCelular = numCelular;
     }
-    public void setTipoUsuario(char tipoUsuario){
-        this.tipoUsuario = tipoUsuario;
+    public void setTipoUsuario(TipoUsuario tipoDeUsuario){
+        this.tipoDeUsuario = tipoDeUsuario;
     }
     
     

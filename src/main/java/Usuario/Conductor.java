@@ -2,8 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package Usuario;
 import Servicio.Servicio;
+
+
+import utils.TipoUsuario;
+import utils.EstadoConductor;
+import Servicio.Servicio;
+
 import Vehiculo.Vehiculo;
 
 import java.util.ArrayList;
@@ -14,23 +21,22 @@ import java.util.ArrayList;
 public class Conductor extends Usuario {
     
     private String numLicencia;
-    private String estado;
+    private EstadoConductor estado;
     private Vehiculo vehiculo;
-    private ArrayList<Servicio> servicio;
 
-    public Conductor(String numLicencia, String estado, Vehiculo vehiculo, ArrayList<Servicio> servicio, String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, char tipoUsuario) {
-        super(numCedula, nombres, apellidos, user, contrasenia, numCelular, tipoUsuario);
+    public Conductor(String numLicencia, EstadoConductor estado, Vehiculo vehiculo, String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, TipoUsuario tipoDeUsuario) {
+        super(numCedula, nombres, apellidos, user, contrasenia, numCelular, tipoDeUsuario);
         this.numLicencia = numLicencia;
         this.estado = estado;
         this.vehiculo = vehiculo;
-        this.servicio = servicio;
     }
 
+    //getters
     public String getNumLicencia() {
         return numLicencia;
     }
 
-    public String getEstado() {
+    public EstadoConductor getEstado() {
         return estado;
     }
 
@@ -38,11 +44,12 @@ public class Conductor extends Usuario {
         return vehiculo;
     }
 
+    //setters
     public void setNumLicencia(String numLicencia) {
         this.numLicencia = numLicencia;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoConductor estado) {
         this.estado = estado;
     }
 
@@ -50,5 +57,9 @@ public class Conductor extends Usuario {
         this.vehiculo = vehiculo;
     }
     
+    @Override
+    public void consultarServicios(){
+        
+    }
     
 }
