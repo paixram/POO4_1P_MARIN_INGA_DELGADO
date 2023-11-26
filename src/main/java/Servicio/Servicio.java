@@ -5,6 +5,9 @@
 package Servicio;
 
 import utils.FormasPago;
+import java.util.Date;
+import Usuario.Conductor;
+
 /**
  *
  * @author Luizzz
@@ -12,13 +15,13 @@ import utils.FormasPago;
 public class Servicio {
     private int id;
     private /*Ruta*/ String ruta;
-    private /*Date*/ String fecha;
-    private /*Conductor*/ String conductorAsignado;
+    private /*Date*/ Date fecha;
+    private Conductor conductorAsignado;
     private double costo;
     private char tipoServicio;
     private FormasPago formaDePago;
 
-    public Servicio(int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+    public Servicio(int id, String ruta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
         this.id = id;
         this.ruta = ruta;
         this.fecha = fecha;
@@ -36,11 +39,11 @@ public class Servicio {
         this.ruta = ruta;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public void setConductorAsignado(String conductorAsignado) {
+    public void setConductorAsignado(Conductor conductorAsignado) {
         this.conductorAsignado = conductorAsignado;
     }
 
@@ -64,11 +67,11 @@ public class Servicio {
         return ruta;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public String getConductorAsignado() {
+    public Conductor getConductorAsignado() {
         return conductorAsignado;
     }
 

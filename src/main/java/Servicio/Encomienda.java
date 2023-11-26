@@ -4,6 +4,8 @@
  */
 package Servicio;
 
+import Usuario.Conductor;
+import java.util.Date;
 import utils.FormasPago;
 import utils.TipoEncomiendas;
 
@@ -19,7 +21,7 @@ public class Encomienda extends Servicio {
     private int cantidadProductos;
     private double peso;
 
-    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String ruta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
         super(id, ruta, fecha, conductorAsignado, costo, tipoServicio, formaDePago);
         this.tipoEncomienda = tipoEncomienda;
         this.cantidadProductos = cantidadProductos;

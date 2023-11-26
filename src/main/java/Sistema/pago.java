@@ -4,18 +4,19 @@
  */
 package Sistema;
 import Usuario.Cliente;
+import java.util.Date;
 /**
  *
  * @author José Miguel
  */
 public class Pago {
     private int numeroIDPago;
-    private date fechaPago;
+    private Date fechaPago;
     private int idServicio;
     private Cliente cliente;
     private double valorPagar;
     
-    public Pago(int numeroIDPago,date fechaPago,int idServicio,Cliente cliente,double valorPagar ){
+    public Pago(int numeroIDPago,Date fechaPago,int idServicio,Cliente cliente,double valorPagar ){
         this.numeroIDPago=numeroIDPago;
         this.fechaPago=fechaPago;
         this.idServicio=idServicio;
@@ -27,7 +28,7 @@ public class Pago {
         return numeroIDPago;
     }
 
-    public date getFechaPago() {
+    public Date getFechaPago() {
         return fechaPago;
     }
 
@@ -47,7 +48,7 @@ public class Pago {
         this.numeroIDPago = numeroIDPago;
     }
 
-    public void setFechaPago(date fechaPago) {
+    public void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
 

@@ -4,6 +4,8 @@
  */
 package Servicio;
 
+import Usuario.Conductor;
+import java.util.Date;
 import utils.FormasPago;
 
 /**
@@ -14,7 +16,7 @@ public class Taxi extends Servicio {
     
     public int numeroPersonas;
 
-    public Taxi(int numeroPersonas, int id, String ruta, String fecha, String conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+    public Taxi(int numeroPersonas, int id, String ruta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
         super(id, ruta, fecha, conductorAsignado, costo, tipoServicio, formaDePago);
         this.numeroPersonas = numeroPersonas;
     }
