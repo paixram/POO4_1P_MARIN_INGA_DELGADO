@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Sistema;
-import usuarios.Cliente;
+import Usuario.Cliente;
 /**
  *
  * @author José Miguel
