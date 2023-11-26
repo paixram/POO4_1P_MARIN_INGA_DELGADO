@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Sistema;
-import usuarios.clientes;
+import usuarios.Cliente;
 /**
  *
  * @author José Miguel
@@ -12,10 +12,10 @@ public class pago {
     private int numeroIDPago;
     private date fechaPago;
     private int idServicio;
-    private clientes cliente;
+    private Cliente cliente;
     private double valoraPagar;
     
-    public pago(int numeroIDPago,date fechaPago,int idServicio,clientes cliente,double valoraPagar ){
+    public pago(int numeroIDPago,date fechaPago,int idServicio,Cliente cliente,double valoraPagar ){
         this.numeroIDPago=numeroIDPago;
         this.fechaPago=fechaPago;
         this.idServicio=idServicio;
@@ -35,7 +35,7 @@ public class pago {
         return idServicio;
     }
 
-    public clientes getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
@@ -55,7 +55,7 @@ public class pago {
         this.idServicio = idServicio;
     }
 
-    public void setCliente(clientes cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

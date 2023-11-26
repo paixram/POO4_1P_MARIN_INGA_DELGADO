@@ -11,7 +11,10 @@ import utils.TipoEncomiendas;
  *
  * @author Luizzz
  */
-public class Encomienda extends Servicio {
+
+
+public class Encomienda extends servicio {
+    
     private TipoEncomiendas tipoEncomienda;
     private int cantidadProductos;
     private double peso;
