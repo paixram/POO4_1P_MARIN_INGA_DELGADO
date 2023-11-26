@@ -9,7 +9,6 @@ package utils;
  * @author Luizzz
  */
 public enum TipoEncomiendas {
-    Medicamentos,
-    Documentos,
-    Ropa
+    MEDICAMENTOS,
+    DOCUMENTOS
 }

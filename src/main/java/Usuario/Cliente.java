@@ -152,7 +152,7 @@ public class Cliente extends Usuario{
                                     TipoVehiculo tV = TipoVehiculo.valueOf(datosVehiculo[4]);
                                     Vehiculo v = new Vehiculo(id_code,datosVehiculo[1],datosVehiculo[2],datosVehiculo[3],tV);
                                     
-                                    Conductor c = new Conductor(datosUsuario[0],datosUsuario[1],datosUsuario[2],datosUsuario[3],datosUsuario[4],datosUsuario[5],tU,datosUsuario[0],eC,v);
+                                    Conductor c = new Conductor(datosUsuario[0],eC,v,datosUsuario[0],datosUsuario[1],datosUsuario[2],datosUsuario[3],datosUsuario[4],datosUsuario[5],tU);
                                 
                             }
                         }
@@ -187,7 +187,7 @@ public class Cliente extends Usuario{
         String id_in = datosUltLinea[0];        
         Integer identificador = Integer.parseInt(id_in);
         int clave_id = (int)identificador;
-        Servicio s_encomienda = new ServicioTaxi(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,date,ident_conductor,tipo_Servicio,forma_Pago);
+        Servicio s_encomienda = new Encomienda(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,date,c,tipo_Servicio,forma_Pago);
         
     }
     
