@@ -10,22 +10,35 @@ import java.util.Date;
  * @author José Miguel
  */
 public class Pago {
+<<<<<<< Updated upstream
     private int numeroIDPago;
     private Date fechaPago;
+=======
+    private int numeroPago;
+    private date fechaPago;
+>>>>>>> Stashed changes
     private int idServicio;
     private Cliente cliente;
     private double valorPagar;
     
+<<<<<<< Updated upstream
     public Pago(int numeroIDPago,Date fechaPago,int idServicio,Cliente cliente,double valorPagar ){
         this.numeroIDPago=numeroIDPago;
+=======
+    public Pago(int numeroPago,date fechaPago,int idServicio,Cliente cliente,double valorPagar ){
+        this.numeroPago=numeroPago;
+>>>>>>> Stashed changes
         this.fechaPago=fechaPago;
         this.idServicio=idServicio;
         this.cliente=cliente;
         this.valorPagar=valorPagar;
     }
+    public void guardarPago(){
+        
+    }
 
-    public int getNumeroIDPago() {
-        return numeroIDPago;
+    public int getNumeroPago() {
+        return numeroPago;
     }
 
     public Date getFechaPago() {
@@ -44,8 +57,8 @@ public class Pago {
         return valorPagar;
     }
 
-    public void setNumeroIDPago(int numeroIDPago) {
-        this.numeroIDPago = numeroIDPago;
+    public void setNumeroPago(int numeroPago) {
+        this.numeroPago = numeroPago;
     }
 
     public void setFechaPago(Date fechaPago) {
