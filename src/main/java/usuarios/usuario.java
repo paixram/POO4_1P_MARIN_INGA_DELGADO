@@ -8,7 +8,7 @@ package usuarios;
  *
  * @author José Marin
  */
-public class Usuario {
+public abstract class Usuario {
     
     private String numCedula, nombres, apellidos, user, contrasenia, numCelular;
     private char tipoUsuario;

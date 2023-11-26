@@ -9,7 +9,7 @@ import Vehiculo.Vehiculo;
 import java.util.ArrayList;
 /**
  *
- * @author Luizzz
+ * @author José Marin
  */
 public class Conductor extends Usuario {
     
