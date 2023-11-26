@@ -10,7 +10,7 @@ package usuarios;
  */
 public abstract class Usuario {
     
-    private String numCedula, nombres, apellidos, user, contrasenia, numCelular;
+    protected String numCedula, nombres, apellidos, user, contrasenia, numCelular;
     private char tipoUsuario;
     
     //constructor
