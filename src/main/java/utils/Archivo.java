@@ -4,6 +4,8 @@
  */
 package utils;
 
+import Servicio.Servicio;
+import Usuario.Usuario;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,6 +14,11 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -19,6 +26,7 @@ import java.util.ArrayList;
  */
 public class Archivo {
         
+    
     public static ArrayList<String> leer(String nombreArchivo){
         ArrayList<String> lineas = new ArrayList<>();
         File archivo = null;
@@ -35,7 +43,7 @@ public class Archivo {
             // Lectura del fichero
             String linea;
             while ((linea = br.readLine()) != null) {
-                System.out.println(linea);
+                //System.out.println(linea);
                 lineas.add(linea);
 
             }
@@ -87,8 +95,151 @@ public class Archivo {
     }
     
     
+    public static ArrayList<String> FindBy(String File, HashMap<String, ArrayList<Object>> where, Object type) {
+        // leer el archivo a recuperar
+        ArrayList<String> data_file_db = Archivo.leer(File);
+        ArrayList<Object> s = new ArrayList();
+        
+        int head = 0;
+        // procesar encabezado
+        String[] raw_head = data_file_db.get(0).split(",");
+        ArrayList<String> process_head = new ArrayList();
+        process_head.addAll(Arrays.asList(raw_head)); 
+
+        
+        // Obtener indices de busqueda y asociar valores a buscar
+        HashMap<HashMap<Integer, Object>, ArrayList<Object>> indices_tipo = new HashMap();
+        for(Map.Entry<String, ArrayList<Object>> kv : where.entrySet()) {
+            String key = kv.getKey();
+            ArrayList<Object> values = kv.getValue();
+            
+            Integer key_index = process_head.indexOf(key);
+            
+            
+            HashMap<Integer, Object> first_part = new HashMap();
+            first_part.put(key_index, values.get(0).getClass());
+            indices_tipo.put(first_part, values);
+
+        }
+        
+        // procesar lineas y encontrar valor en los indices de busqueda y guardar el objeto del tipo deseado
+        
+        ArrayList<String> filtered = new ArrayList();
+        for(String data_linebline : data_file_db) {
+            if(head == 0) {
+                head = 1;
+                continue;
+            }
+            
+          
+            // Parse lines into array
+            String[] data_array = data_linebline.split(",");
+            Set<String> data_checked = new HashSet<>();
+            Set<String> data_pre_check = new HashSet<>();
+            
+            // Hacer busqueda
+            for(Map.Entry<HashMap<Integer, Object>, ArrayList<Object>> it_entry : indices_tipo.entrySet()) {
+                HashMap<Integer, Object> metadata = it_entry.getKey();
+                ArrayList<Object> values_compare = it_entry.getValue();
+      
+                data_pre_check = new HashSet();
+                // hashamap querys
+                for(Map.Entry<Integer, Object> metadata_entry : metadata.entrySet()) {
+                     
+              
+                    Integer index_search = metadata_entry.getKey();
+                    Object type_data = metadata_entry.getValue();
+                    // Obtener la data de la db y parsear data al tipo deseado
+                    //Object tipo = metadata_entry.getValue();
+                    String data_get = data_array[index_search];
+                
+                    Object dataaa = null;
+          
+                    // instanceof
+                    if(type_data == String.class) {
+                       dataaa = String.valueOf(data_get);
+                    }else if(type_data == Integer.class) {
+                       dataaa = Integer.valueOf(data_get);
+                    }else if(type_data == Double.class) {
+                       dataaa = Double.valueOf(data_get);
+                    }else if(type_data == TipoServicio.class) {
+                       dataaa = TipoServicio.valueOf(data_get);
+                    }else if(type_data == TipoUsuario.class) {
+                       dataaa = TipoUsuario.valueOf(data_get);
+                    }else if(type_data == TipoVehiculo.class) {
+                       dataaa = TipoVehiculo.valueOf(data_get);
+                    }else if(type_data == FormasPago.class) {
+                       dataaa = FormasPago.valueOf(data_get);
+                    }else if(type_data == EstadoConductor.class) {
+                       dataaa = EstadoConductor.valueOf(data_get);
+                    }
+                     
+                    // recorrer la lista de valores y comparar con OR
+                     
+                    for(Object values_conditionals : values_compare) {
+                        if(dataaa.equals(values_conditionals)) {
+                            // si es igual se rompe el ciclo porque no hace falta buscar mas y se agrega a un set para comprobar los demas valores
+                            // comprobar si set esta vacio
+                            if(data_checked.isEmpty()) {
+                                data_checked.add(data_linebline);
+                            }else{
+                                data_pre_check.add(data_linebline);
+                                 
+                            }
+                             
+                            break;
+                        }else{
+                            data_checked.add("");
+                        }
+                         
+                    }
+                    
+                }
+                
+            }
+            
+            
+            if(data_checked.size() == 1) {
+                
+                for (String elemento : data_checked) {
+                    filtered.add(elemento);
+                }
+            }
+           
+        }
+        
+        // formatear datos con el arreglo de filtro de todos los usuarios encontrados
+        /*for(String df : filtered) {
+            if(type == Servicio.class) {
+                String[] sd = df.split(";");
+                Servicio sr = new Servicio(Integer.parseInt(sd[0]), sd[4], sd[5], sd[6], sd[7], null, TipoServicio.valueOf(sd[1], null));
+            }
+        }*/
+        
+        System.out.println("Datos encontrados: "+ filtered);
+        return filtered;
+    }
     
     
+    public static HashMap<String, ArrayList<Object>> CreateQuery(Object[]... values) {
+        
+        // Map
+        HashMap<String, ArrayList<Object>> mapvalue = new HashMap<>();
+        
+        for(Object[] d : values) {
+            String field = (String)d[0];
+            mapvalue.put(field, new ArrayList());
+            //System.out.println(values.length - 1);
+            // put data into object pattern value
+            for(int i = 1; i <= (d.length - 1); i++) {
+                mapvalue.get(field).add(d[i]);
+            }
+            
+        }
+        
+        
+        return mapvalue;
+    }
     
     
     
