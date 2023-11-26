@@ -6,6 +6,7 @@ package Servicio;
 
 import Usuario.Conductor;
 import java.util.Date;
+import utils.Archivo;
 import utils.FormasPago;
 import utils.TipoEncomiendas;
 
@@ -20,12 +21,33 @@ public class Encomienda extends Servicio {
     private TipoEncomiendas tipoEncomienda;
     private int cantidadProductos;
     private double peso;
+    
+    public int dpe = 1;
 
-    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String desde, String hasta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
-        super(id, desde, hasta, fecha, conductorAsignado, costo, tipoServicio, formaDePago);
+    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String desde, String hasta, Date fecha, String hora, Conductor conductorAsignado, char tipoServicio, FormasPago formaDePago) {
+        super(id, desde, hasta, fecha, hora, conductorAsignado, tipoServicio, formaDePago);
         this.tipoEncomienda = tipoEncomienda;
         this.cantidadProductos = cantidadProductos;
         this.peso = peso;
+    }
+    
+    @Override
+    public double calcularCosto() {
+        double valor = dpe * this.peso;
+        
+        valor += valor + 4;
+        
+        System.out.println("Total a pagar: " + valor);
+        
+        super.setCosto(valor);
+        
+        return valor;
+    }
+    
+    public void guardarEcomienda() {
+        String ecomienda_data = String.valueOf(super.getId()) + "," + String.valueOf(this.tipoEncomienda) + "," + String.valueOf(this.cantidadProductos) + "," + String.valueOf(this.peso) + "," + String.valueOf(super.getCosto());
+    
+        Archivo.EscribirArchivo("../Database/Encomiendas.txt", ecomienda_data);
     }
 
     public TipoEncomiendas getTipoEncomienda() {
