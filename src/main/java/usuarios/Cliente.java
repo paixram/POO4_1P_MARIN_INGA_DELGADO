@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package usuarios;
-import servicios.Servicio;
+import Servicio.Servicio;
 import java.util.ArrayList;
 
 /**
