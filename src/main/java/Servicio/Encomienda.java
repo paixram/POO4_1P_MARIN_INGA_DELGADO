@@ -21,8 +21,8 @@ public class Encomienda extends Servicio {
     private int cantidadProductos;
     private double peso;
 
-    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String ruta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
-        super(id, ruta, fecha, conductorAsignado, costo, tipoServicio, formaDePago);
+    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String desde, String hasta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+        super(id, desde, hasta, fecha, conductorAsignado, costo, tipoServicio, formaDePago);
         this.tipoEncomienda = tipoEncomienda;
         this.cantidadProductos = cantidadProductos;
         this.peso = peso;

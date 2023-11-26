@@ -14,29 +14,40 @@ import Usuario.Conductor;
  */
 public class Servicio {
     private int id;
-    private /*Ruta*/ String ruta;
+    private /*Ruta*/ String desde;
+    private /*Ruta*/ String hasta;
     private /*Date*/ Date fecha;
     private Conductor conductorAsignado;
     private double costo;
     private char tipoServicio;
     private FormasPago formaDePago;
 
-    public Servicio(int id, String ruta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
+    public Servicio(int id, String desde, String hasta, Date fecha, Conductor conductorAsignado, double costo, char tipoServicio, FormasPago formaDePago) {
         this.id = id;
-        this.ruta = ruta;
+        this.desde = desde;
+        this.hasta = hasta;
         this.fecha = fecha;
         this.conductorAsignado = conductorAsignado;
         this.costo = costo;
         this.tipoServicio = tipoServicio;
         this.formaDePago = formaDePago;
     }
+    
+    public double calcularCosto() {
+        System.out.println("***************************** Calculando costo *****************************");
+        return 0.0;
+    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
+    public void setDesde(String desde) {
+        this.desde = desde;
+    }
+    
+    public void setHasta(String hasta) {
+        this.hasta = hasta;
     }
 
     public void setFecha(Date fecha) {
@@ -63,8 +74,12 @@ public class Servicio {
         return id;
     }
 
-    public String getRuta() {
-        return ruta;
+    public String getDesde() {
+        return desde;
+    }
+    
+    public String getHasta() {
+        return hasta;
     }
 
     public Date getFecha() {
