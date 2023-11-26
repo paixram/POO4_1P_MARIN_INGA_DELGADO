@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import utils.*;
 import utils.TipoVehiculo;
+import Vehiculo.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -148,7 +149,7 @@ public class Cliente extends Usuario{
                                     Integer cVehiculo = Integer.parseInt(codigoVehiculo);
                                     int id_code = (int)cVehiculo;
                                     
-                                    TipoVehículo tV = TipoVehículo.valueOf(datosVehiculo[4]);
+                                    TipoVehiculo tV = TipoVehiculo.valueOf(datosVehiculo[4]);
                                     Vehiculo v = new Vehiculo(id_code,datosVehiculo[1],datosVehiculo[2],datosVehiculo[3],tV);
                                     
                                     Conductor c = new Conductor(datosUsuario[0],datosUsuario[1],datosUsuario[2],datosUsuario[3],datosUsuario[4],datosUsuario[5],tU,datosUsuario[0],eC,v);

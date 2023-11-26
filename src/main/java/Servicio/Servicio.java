@@ -29,7 +29,7 @@ public class Servicio {
     private String hora;
 
 
-    public Servicio(int id, String desde, String hasta, Date fecha, Conductor conductorAsignado, double costo, TipoServicio tipoServicio, FormasPago formaDePago) {
+    public Servicio(int id, String desde, String hasta, Date fecha, String hora, Conductor conductorAsignado, TipoServicio tipoServicio, FormasPago formaDePago) {
 
         this.id = id;
         this.desde = desde;

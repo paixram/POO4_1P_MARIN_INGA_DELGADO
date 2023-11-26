@@ -10,6 +10,7 @@ import utils.FormasPago;
 import java.util.Random;
 import java.util.Scanner;
 import utils.Archivo;
+import utils.TipoServicio;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Taxi extends Servicio {
     
     final public double cpk = 0.50;
 
-    public Taxi(int numeroPersonas, int id, String desde, String hasta, Date fecha, String hora, Conductor conductorAsignado, char tipoServicio, FormasPago formaDePago) {
+    public Taxi(int numeroPersonas, int id, String desde, String hasta, Date fecha, String hora, Conductor conductorAsignado, TipoServicio tipoServicio, FormasPago formaDePago) {
         super(id, desde, hasta, fecha, hora, conductorAsignado, tipoServicio, formaDePago);
         this.numeroPersonas = numeroPersonas;
     }

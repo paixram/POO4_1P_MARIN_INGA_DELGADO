@@ -9,6 +9,7 @@ import java.util.Date;
 import utils.Archivo;
 import utils.FormasPago;
 import utils.TipoEncomiendas;
+import utils.TipoServicio;
 
 /**
  *
@@ -24,12 +25,14 @@ public class Encomienda extends Servicio {
     
     public int dpe = 1;
 
-    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String desde, String hasta, Date fecha, String hora, Conductor conductorAsignado, char tipoServicio, FormasPago formaDePago) {
+    public Encomienda(TipoEncomiendas tipoEncomienda, int cantidadProductos, double peso, int id, String desde, String hasta, Date fecha, String hora, Conductor conductorAsignado, TipoServicio tipoServicio, FormasPago formaDePago) {
         super(id, desde, hasta, fecha, hora, conductorAsignado, tipoServicio, formaDePago);
         this.tipoEncomienda = tipoEncomienda;
         this.cantidadProductos = cantidadProductos;
         this.peso = peso;
     }
+    
+    
     
     @Override
     public double calcularCosto() {
