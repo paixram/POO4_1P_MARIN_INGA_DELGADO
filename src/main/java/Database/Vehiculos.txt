@@ -1,0 +1,6 @@
+codigoVehiculo,placa,modelo,marca,tipo
+1,ABC123,2022,Honda,Sedan
+2,XYZ789,2021,Toyota,SUV
+3,LMN456,2023,Ford,Pickup
+4,PQR987,2020,Chevrolet,Hatchback
+5,JKL321,2022,Volkswagen,Camioneta
