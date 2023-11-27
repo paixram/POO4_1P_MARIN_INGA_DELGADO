@@ -13,7 +13,9 @@ import utils.EstadoConductor;
 import Vehiculo.Vehiculo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import utils.Archivo;
+import utils.TipoServicio;
 import utils.TipoVehiculo;
 /**
  *
@@ -60,7 +62,34 @@ public class Conductor extends Usuario {
     
     @Override
     public void consultarServicios(){
+        String nombre = this.getNombres();
         
+        // Extraer todas la chamba del conductor desde servicio
+        HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"nombreConductor", nombre});
+        ArrayList<String> conductor_chamba = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Servicios.txt", where, Servicio.class);
+        
+        
+        for(String cc : conductor_chamba) {
+            // splitear chamba
+            String[] cc_data = cc.split(",");
+            System.out.println("Tipo: " + TipoServicio.valueOf(cc_data[1]));
+            
+            HashMap<String, ArrayList<Object>> clausule_serv_viaje = Archivo.CreateQuery(new Object[]{"numeroServicio", cc_data[0]});
+            ArrayList<String> conductor_viaje = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Viajes.txt", clausule_serv_viaje, Servicio.class);
+            
+            String[] cv = (conductor_viaje.get(0)).split(",");
+            
+            Integer pasajeros_num = Integer.parseInt(cv[1]);
+            
+            if(TipoServicio.valueOf(cc_data[1]) == TipoServicio.T) {
+                System.out.println("Cantidad pasajeros: " + pasajeros_num);
+            }
+            
+            System.out.println("Fecha: " + cc_data[6]);
+            System.out.println("Hora: " + cc_data[7]);
+            System.out.println("Desde: " + cc_data[4]);
+            System.out.println("Hasta: " + cc_data[5]);
+        }
     }
     
     public static ArrayList<Conductor> getConductores(){
