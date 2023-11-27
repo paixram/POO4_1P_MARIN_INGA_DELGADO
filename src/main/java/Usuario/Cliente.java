@@ -320,7 +320,69 @@ public class Cliente extends Usuario{
     }
     
     public void pagarServicio(){
-    
+        this.consultarServicios();
+        System.out.println("Determine el servicio a pagar con el id: ");
+        Scanner sc = new Scanner(System.in);
+        int id_service = sc.nextInt();
+        HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"numeroServicio",id_service});                
+        ArrayList<String> coincidencia = Archivo.FindBy("C:\\Users\\José Marin\\Desktop\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Servicios.txt", where, Servicio.class);
+        String[] partes = coincidencia.get(0).split(",");
+        System.out.println("De qué forma desea pagar: T(Tarjeta de crédito)/E(Efectivo) ");
+        String formaPago = sc.nextLine();
+        FormasPago forma_pago = FormasPago.valueOf(formaPago);
+        String t_d_s = partes[1];
+        TipoServicio tDS = TipoServicio.valueOf(t_d_s);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");        
+        Date fecha = null;
+        try {
+            fecha = dateFormat.parse(partes[6]);
+            System.out.println("Fecha ingresada: " + fecha);
+        }catch (ParseException e) {
+            System.out.println("Formato de fecha inválido. Asegúrate de ingresar la fecha en formato dd/MM/yyyy.");
+        }
+        //conductor
+        Conductor c_asignado = null;
+        ArrayList<Conductor> conductores = Conductor.getConductores();
+        for (Conductor c: conductores){
+            if (c.getNombres().equals(partes[3])){
+                c_asignado = c;
+            }
+        }
+
+        if (tDS == TipoServicio.T){
+            HashMap<String, ArrayList<Object>> where2 = Archivo.CreateQuery(new Object[]{"numeroServicio",id_service});              
+            ArrayList<String> datosViaje = Archivo.FindBy("C:\\Users\\José Marin\\Desktop\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Viajes.txt", where2, Servicio.class);
+            String[] partesViaje = datosViaje.get(0).split(",");
+            String numPasajeros = partesViaje[1];
+            Integer cant = Integer.parseInt(numPasajeros);
+            int cant_pasajeros = (int)cant;                
+            if (forma_pago == FormasPago.T){
+                Taxi s = new Taxi(cant_pasajeros, id_service, partes[4], partes[5], fecha, partes[7],
+                        c_asignado, TipoServicio.T, FormasPago.T);
+                s.calcularCosto(t_d_s);
+            }else{
+                Taxi s = new Taxi(cant_pasajeros, id_service, partes[4], partes[5], fecha, partes[7],
+                        c_asignado, TipoServicio.T, FormasPago.E);
+                s.calcularCosto();
+            }
+        }else{
+            HashMap<String, ArrayList<Object>> where3 = Archivo.CreateQuery(new Object[]{"numeroServicio",id_service});              
+            ArrayList<String> datosEncomienda = Archivo.FindBy("C:\\Users\\José Marin\\Desktop\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Encomiendas.txt", where3, Servicio.class);
+
+            String[] partesEncomienda = datosEncomienda.get(0).split(",");
+            TipoEncomiendas tE = TipoEncomiendas.valueOf(partesEncomienda[1]);
+            String cantProd = partesEncomienda[2];
+            Integer cant = Integer.parseInt(cantProd);
+            int cant_prod = (int)cant;           
+            double peso = sc.nextDouble();
+
+            Encomienda e = new Encomienda(tE, cant_prod, peso, id_service, partes[4], partes[5],fecha, partes[7],
+                      c_asignado,TipoServicio.E, FormasPago.T);
+            e.calcularCosto();
+        }
+
+
     }
     
     

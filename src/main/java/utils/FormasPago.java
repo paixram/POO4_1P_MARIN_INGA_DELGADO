@@ -9,6 +9,6 @@ package utils;
  * @author Luizzz
  */
 public enum FormasPago {
-    TARJETA,
-    EFECTIVO
+    T,
+    E
 }
