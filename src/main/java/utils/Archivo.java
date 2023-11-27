@@ -94,7 +94,7 @@ public class Archivo {
     }
     
     
-    public static ArrayList<Object> FindBy(String File, HashMap<String, ArrayList<Object>> where, Object type) {
+    public static ArrayList<String> FindBy(String File, HashMap<String, ArrayList<Object>> where, Object type) {
         // leer el archivo a recuperar
         ArrayList<String> data_file_db = Archivo.leer(File);
         ArrayList<Object> s = new ArrayList();
@@ -104,7 +104,6 @@ public class Archivo {
         String[] raw_head = data_file_db.get(0).split(",");
         ArrayList<String> process_head = new ArrayList();
         process_head.addAll(Arrays.asList(raw_head)); 
-        System.out.println(process_head);
         
         // Obtener indices de busqueda y asociar valores a buscar
         HashMap<HashMap<Integer, Object>, ArrayList<Object>> indices_tipo = new HashMap();
@@ -114,12 +113,9 @@ public class Archivo {
             
             Integer key_index = process_head.indexOf(key);
             
-            System.out.println("Index de " + key + " en " + key_index);
-            
             HashMap<Integer, Object> first_part = new HashMap();
             first_part.put(key_index, values.get(0).getClass());
             indices_tipo.put(first_part, values);
-            System.out.println(indices_tipo);
         }
         
         // procesar lineas y encontrar valor en los indices de busqueda y guardar el objeto del tipo deseado
@@ -132,7 +128,6 @@ public class Archivo {
                 continue;
             }
          
-            System.out.println(data_linebline);
             // Parse lines into array
             String[] data_array = data_linebline.split(",");
             Set<String> data_checked = new HashSet<>();
@@ -144,14 +139,11 @@ public class Archivo {
                 HashMap<Integer, Object> metadata = it_entry.getKey();
                 ArrayList<Object> values_compare = it_entry.getValue();
                 v_c_l += values_compare.size();
-                 System.out.println("AHHH");
                 
                 data_pre_check = new HashSet();
                 // hashamap querys
                 for(Map.Entry<Integer, Object> metadata_entry : metadata.entrySet()) {
                      
-                    System.out.println("A " + metadata + values_compare);
-                    System.out.println("B " + metadata_entry.getKey() + metadata_entry.getValue());
                     Integer index_search = metadata_entry.getKey();
                     Object type_data = metadata_entry.getValue();
                     // Obtener la data de la db y parsear data al tipo deseado
@@ -179,24 +171,17 @@ public class Archivo {
                        dataaa = EstadoConductor.valueOf(data_get);
                     }
                      
-                    System.out.println("El tipo es: " + dataaa.getClass() + " el dato es: " + dataaa);
                     // recorrer la lista de valores y comparar con OR
                     
                     for(Object values_conditionals : values_compare) {
-                        System.out.println("Dataa: " + dataaa + " valor_comparado: " + values_conditionals);
                         if(dataaa.equals(values_conditionals)) {
                             // si es igual se rompe el ciclo porque no hace falta buscar mas y se agrega a un set para comprobar los demas valores
                             // comprobar si set esta vacio
-                             System.out.println("Ka");
                             if(data_checked.isEmpty()) {
                                 data_checked.add(data_linebline);
-                                System.out.println("ui");
-                                System.out.println(data_checked);
                             }else{
                                 //data_pre_check = new HashSet();
-                                System.out.println("Ui2");
                                 data_pre_check.add(data_linebline);
-                                System.out.println(data_pre_check);
                                  
                             }
                              
@@ -214,9 +199,7 @@ public class Archivo {
             
             
             if(v_c_l > 1) {
-                System.out.println(data_checked + " XD " + data_pre_check);
                 data_checked.retainAll(data_pre_check);
-                System.out.println(data_checked + " XD " + data_pre_check);
             }
             
             data_checked.removeIf(String::isEmpty);
@@ -233,7 +216,7 @@ public class Archivo {
         }
         
         System.out.println("Datos encontrados: "+ filtered);
-        return s;
+        return filtered;
     }
     
     

@@ -1,0 +1,2 @@
+codigoVehiculo,placa,modelo,marca,tipo
+23,XRMD325,2023,XC3,A
