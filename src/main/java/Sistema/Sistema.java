@@ -9,13 +9,6 @@ import java.util.ArrayList;
 import Vehiculo.*;
 import java.util.HashMap;
 import utils.Archivo;
-
-import Servicio.*;
-import Usuario.*;
-import java.util.HashMap;
-
-import Servicio.Servicio;
-
 import java.util.Scanner;
 import utils.*;
 import Usuario.Cliente;
@@ -36,6 +29,7 @@ public class Sistema {
         
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"cedula", "0945698598"});
         Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Conductores.txt", where, Servicio.class);
+        validarAcceso();
     }
     public static ArrayList<Usuario> getUsuarios() {
         return usuarios;
@@ -68,127 +62,103 @@ public class Sistema {
         this.servicios=servicios;
         
     }
-    
-    
-    /*static void validarAcceso(){
+    static void validarAcceso(){
+        System.out.println("+++++++++++++++++++++++++++++++++++");
+        System.out.println("      BIENVENIDO AL SISTEMA");
+        System.out.println("+++++++++++++++++++++++++++++++++++");
         Scanner sc= new Scanner(System.in);
         System.out.print("USUARIO: ");
         String usuario = sc.nextLine();
         System.out.print("CONTRASEÑA: ");
         String contraseña = sc.nextLine();
-        ArrayList<String> lineas = Archivo.leer("usuarios.txt");
-        usuarios = new ArrayList<>();
 
-        for (String linea : lineas) {
-            String[] datos = linea.split(",");
-            String tipoUsuario = datos[0];
-
-<<<<<<< HEAD
-            if (tipoUsuario.equals("C")) {
-                // Se crea objeto cliente y se lo agrega a la lista de usuarios
-                Cliente cliente = new Cliente(Integer.parseInt(datos[7]), datos[8], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], TipoUsuario.CLIENTE);
-                usuarios.add(cliente);
-            } else if (tipoUsuario.equals("R")) {
-                // Se crea objeto conductor y se lo agrega a la lista de usuarios
-                Conductor conductor = new Conductor(datos[7], EstadoConductor.valueOf(datos[8]), vehiculo, datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], TipoUsuario.CONDUCTOR);
-                usuarios.add(conductor);
-            }
-
-            
-=======
-        if (tipoUsuario.equals("C")) {
-            // Se crea objeto cliente y se lo agrega a la lista de usuarios
-            Cliente cliente = new Cliente(Integer.parseInt(datos[7]), datos[8], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], TipoUsuario.cliente);
-            usuarios.add(cliente);
-        } else if (tipoUsuario.equals("R")) {
-            // Se crea objeto conductor y se lo agrega a la lista de usuarios
-            
-            Conductor conductor = new Conductor(datos[7], EstadoConductor.valueOf(datos[8]), vehiculo, datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], TipoUsuario.CONDUCTOR);
-            usuarios.add(conductor);
->>>>>>> 5c5445f9db31475c0d9694b0891045a41c30bc98
+        // BUSCAR EL USUARIO
+        HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"user", usuario});
+        ArrayList<String> user_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Usuarios.txt", where, Usuario.class);
+        System.out.println(user_cred);
+        if(user_cred.isEmpty()) {
+            System.out.println("No existe usuario llamado: " + usuario);
+            return;
         }
-        
-        Usuario usuarioEncontrado = buscarUsuario(usuario, contraseña);
-        if (usuarioEncontrado != null && usuarioEncontrado.getContraseña().equals(contraseña)) {
-            System.out.println("Acceso concedido. ¡Bienvenido, " + usuarioEncontrado.getNombres() + "!");
-<<<<<<< HEAD
+        String password = ((String)user_cred.get(0)).split(",")[4];
+        System.out.println(password);
+        if(!contraseña.equals(password)) {
+            System.out.println("Contraseña no es valida!");
+            return;
+        }
+        // cedula
+        String cedula = ((String)user_cred.get(0)).split(",")[0];
+        // Tener el tipo de cliente
+        TipoUsuario tu = TipoUsuario.valueOf(((String)user_cred.get(0)).split(",")[6]);
+        if(tu == TipoUsuario.C) {
+            System.out.println("Es cliente");
+            HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"cedula", cedula});
+            ArrayList<String> cliente_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Clientes.txt", clausule, Cliente.class);
+            String[] data_cliente = (cliente_cred.get(0)).split(",");
+            Cliente cliente = new Cliente(Integer.parseInt(data_cliente[1]), data_cliente[2], ((String)user_cred.get(0)).split(",")[0], ((String)user_cred.get(0)).split(",")[1], ((String)user_cred.get(0)).split(",")[2], ((String)user_cred.get(0)).split(",")[3], ((String)user_cred.get(0)).split(",")[4],((String)user_cred.get(0)).split(",")[5], tu);
+            mostrarMenuCliente(cliente);
+        }else if(tu == TipoUsuario.R) {
+            System.out.println("Es conductor");
+            HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"cedula", cedula});
+            ArrayList<String> conductor_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Conductores.txt", clausule, Cliente.class);
+            String[] data_conductor = (conductor_cred.get(0)).split(",");
+            // Vehiculo
+            HashMap<String, ArrayList<Object>> clausule_dos = Archivo.CreateQuery(new Object[]{"codigoVehiculo", Integer.parseInt(data_conductor[2])});
+            ArrayList<String> vehiculo_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Vehiculos.txt", clausule_dos, Cliente.class);
+            String[] data_vehiculo = (vehiculo_cred.get(0)).split(",");
+            Vehiculo vac = new Vehiculo(Integer.parseInt(data_vehiculo[0]), data_vehiculo[1], data_vehiculo[2], data_vehiculo[3], TipoVehiculo.valueOf(data_vehiculo[4]));
+            Conductor cd = new Conductor(data_conductor[0], EstadoConductor.valueOf(data_conductor[1]), vac, ((String)user_cred.get(0)).split(",")[0], ((String)user_cred.get(0)).split(",")[1],((String)user_cred.get(0)).split(",")[2], ((String)user_cred.get(0)).split(",")[3], ((String)user_cred.get(0)).split(",")[4], ((String)user_cred.get(0)).split(",")[5], TipoUsuario.valueOf(((String)user_cred.get(0)).split(",")[6]));
+            mostrarMenuConductor(cd);
+        }
 
-        } else {
-            System.out.println("Credenciales incorrectas. Intenta de nuevo.");
-        }   
     }
-    
-    static Usuario buscarUsuario(String nombre, String contraseña) {
-        
+    static void mostrarMenuConductor(Conductor r) {
+        System.out.println("/*******************************************Menu Cliente*******************************************\\");
+        System.out.println("1. Consultar Servicio Asignado");
+        System.out.println("2. Datos de su vehiculo");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Elija una opcion: ");
+        int opcion = sc.nextInt();
+        switch (opcion) {
+            case 1:
+                //consultar servicio
+                r.consultarServicios();
+                break;
+            case 2:
+                //datos de su vehiculo
+                r.verificarDatVehiculo();
+                break;
+            
+            default:
+                System.out.println("Opción no válida, vuelva a intentar");
+        }
     }
-
-        
-        } else {
-            System.out.println("Credenciales incorrectas. Intenta de nuevo.");
-    }        
-    }
-        
->>>>>>> 5c5445f9db31475c0d9694b0891045a41c30bc98
-    
-    static void guardarDatosCliente(){
-    
-    }
-    static void iniciarSesion(){
-    
-    }
-    static void mostrarMenu(){
-        System.out.println("/*******************************************Menu*******************************************\\");
+    static void mostrarMenuCliente(Cliente c){
+        System.out.println("/*******************************************Menu Cliente*******************************************\\");
         System.out.println("1. Solicitar servicio de taxi");
         System.out.println("2. Solicitar entrega de encomienda");
         System.out.println("3. Consultar servicios");
         Scanner sc = new Scanner(System.in);
         System.out.println("Elija una opcion: ");
         int opcion = sc.nextInt();
-        Cliente cliente = new Cliente(25, "1234567890123456", "CED123", "Nombre", "Apellido", "usuario", "contraseña",
-                "1234567890", TipoUsuario.C);
         switch (opcion) {
             case 1:
-                //solicitarServicioTaxi();
+                
+                c.solicitarServicioTaxi();
                 break;
             case 2:
-                //solicitarServicioEncomienda();
+                
+                c.solicitarServicioEncomienda();
                 break;
             case 3:
-                //consultarServicios();
+                
+                c.consultarServicios();
                 break;
             default:
                 System.out.println("Opción no válida, vuelva a intentar");
-    }     
+        }     
+
+ 
     }
-
-                cliente.solicitarServicioTaxi();
-                break;
-            case 2:
-                cliente.solicitarServicioEncomienda();
-                break;
-            case 3:
-                cliente.consultarServicios();
-                break;
-            default:
-                System.out.println("Opción no válida, vuelva a intentar");
-    }  
-        System.out.println("/*******************************************Menu Conductor*******************************************\\");
-        System.out.println("1. Consultar servicio asignado");
-        System.out.println("2. Datos de su vehiculo");
-        int opcion2=sc.nextInt();
-        Conductor conductor= new Conductor();
-        switch (opcion2) {
-            case 1:
-                conductor.consultarServicios();
-                break;
-            case 2:
-                conductor.verificarDatVehiculo();
-                break;
-            default:
-                System.out.println("Opción no válida, vuelva a intentar");
-        }*/
-    }
-
-
-      
-       
+}
+   
