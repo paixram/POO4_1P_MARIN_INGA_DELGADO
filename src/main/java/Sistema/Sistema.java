@@ -8,7 +8,9 @@ import Usuario.Usuario;
 import java.util.ArrayList;
 import Vehiculo.*;
 import java.util.HashMap;
+import java.util.Scanner;
 import utils.Archivo;
+
 
 import java.util.Scanner;
 import utils.*;
@@ -31,6 +33,7 @@ public class Sistema {
         //HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"cedula", "0945698598"});
         //Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Conductores.txt", where, Servicio.class);
     
+
         validarAcceso();
     }
     public static ArrayList<Usuario> getUsuarios() {
@@ -64,34 +67,37 @@ public class Sistema {
         this.servicios=servicios;
         
     }
+
     
-    
+
     static void validarAcceso(){
-        
         System.out.println("+++++++++++++++++++++++++++++++++++");
         System.out.println("      BIENVENIDO AL SISTEMA");
         System.out.println("+++++++++++++++++++++++++++++++++++");
-        
+
         Scanner sc= new Scanner(System.in);
         System.out.print("USUARIO: ");
         String usuario = sc.nextLine();
         System.out.print("CONTRASEÑA: ");
         String contraseña = sc.nextLine();
+
         
         
         // BUSCAR EL USUARIO
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"user", usuario});
         ArrayList<String> user_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Usuarios.txt", where, Usuario.class);
         
+
         System.out.println(user_cred);
         if(user_cred.isEmpty()) {
             System.out.println("No existe usuario llamado: " + usuario);
             return;
-        }
+        } 
         
         String password = ((String)user_cred.get(0)).split(",")[4];
         System.out.println(password);
         
+
         if(!contraseña.equals(password)) {
             System.out.println("Contraseña no es valida!");
             return;
@@ -108,6 +114,7 @@ public class Sistema {
             System.out.println("Es cliente");
             HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"cedula", cedula});
             ArrayList<String> cliente_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Clientes.txt", clausule, Cliente.class);
+
             
             String[] data_cliente = (cliente_cred.get(0)).split(",");
             Cliente cliente = new Cliente(Integer.parseInt(data_cliente[1]), data_cliente[2], ((String)user_cred.get(0)).split(",")[0], ((String)user_cred.get(0)).split(",")[1], ((String)user_cred.get(0)).split(",")[2], ((String)user_cred.get(0)).split(",")[3], ((String)user_cred.get(0)).split(",")[4],
@@ -139,33 +146,31 @@ public class Sistema {
         
     }
     
+    
+
+     
     static void mostrarMenuConductor(Conductor r) {
         System.out.println("/*******************************************Menu Cliente*******************************************\\");
         System.out.println("1. Consultar Servicio Asignado");
         System.out.println("2. Datos de su vehiculo");
         Scanner sc = new Scanner(System.in);
         System.out.println("Elija una opcion: ");
-        
         int opcion = sc.nextInt();
-        
         switch (opcion) {
             case 1:
-                //solicitarServicioTaxi();
+                //consultar servicio
                 r.consultarServicios();
                 break;
             case 2:
-                //solicitarServicioEncomienda();
-                //r.datosVehiculo();
+                //datos de su vehiculo
+                //r.verificarDatVehiculo();
                 break;
-            case 3:
-                //consultarServicios();
-                
-                break;
+            
             default:
                 System.out.println("Opción no válida, vuelva a intentar");
-        }
     }
-    
+    }
+
     static void mostrarMenuCliente(Cliente c){
         System.out.println("/*******************************************Menu Cliente*******************************************\\");
         System.out.println("1. Solicitar servicio de taxi");
@@ -186,16 +191,13 @@ public class Sistema {
                 break;
             case 3:
                 //consultarServicios();
-                c.consultarServicios();
-                break;
             default:
                 System.out.println("Opción no válida, vuelva a intentar");
         }     
-    
+
 
     }
 }
 
 
       
-       

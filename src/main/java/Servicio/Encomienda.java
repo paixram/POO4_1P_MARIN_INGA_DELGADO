@@ -77,5 +77,8 @@ public class Encomienda extends Servicio {
         this.peso = peso;
     }
     
-    
+    @Override
+    public String toString(){
+        return "Tipo: Encomienda" + tipoEncomienda +", cantidadProductos=" + cantidadProductos +", peso= " + peso+super.toString();  
+                }
 }

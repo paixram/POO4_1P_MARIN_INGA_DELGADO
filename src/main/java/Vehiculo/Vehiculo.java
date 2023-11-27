@@ -10,7 +10,8 @@ package Vehiculo;
  */
 import utils.TipoVehiculo;
 import java.util.ArrayList;
-
+import utils.Archivo;
+import utils.TipoVehiculo;
 public class Vehiculo{
     private int codigoVehiculo;
     private String placa;
@@ -18,14 +19,23 @@ public class Vehiculo{
     public String marca;
     public TipoVehiculo tipo;
     
-    /*static ArrayList<Vehiculo> getVehiculos(){
-        return ArrayList<Vehiculo> vehiculos;
-
     static ArrayList<Vehiculo> getVehiculos(){
-        //llamar a leer 
-        return new ArrayList<>();
+         ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        
+        Vehiculo v1 = null;
+        ArrayList<String> lineasArc = Archivo.leer("Vehiculos.txt");
+        for (String lineas: lineasArc){            
+            String[] datosVehiculos = lineas.split(",");
+            String codigoVehiculo = datosVehiculos[0];
+            Integer cVehiculo = Integer.parseInt(codigoVehiculo);
+            int id_code = (int)cVehiculo;
+            TipoVehiculo tV = TipoVehiculo.valueOf(datosVehiculos[4]);
+            v1 = new Vehiculo(id_code,datosVehiculos[1],datosVehiculos[2],datosVehiculos[3],tV);
+                }
+        return vehiculos;
+    }
 
-    }*/
+    
     public int getCodigoVehiculo() {
         return codigoVehiculo;
     }
