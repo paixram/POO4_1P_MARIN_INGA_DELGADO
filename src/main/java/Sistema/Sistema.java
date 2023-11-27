@@ -106,19 +106,19 @@ public class Sistema {
         
         // cedula
         String cedula = ((String)user_cred.get(0)).split(",")[0];
-        
+      
         // Tener el tipo de cliente
         
         TipoUsuario tu = TipoUsuario.valueOf(((String)user_cred.get(0)).split(",")[6]);
         
         if(tu == TipoUsuario.C) {
             System.out.println("Es cliente");
-            HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"cedula", cedula});
+            HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"numCedula", cedula});
             ArrayList<String> cliente_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Clientes.txt", clausule, Cliente.class);
 
             
             String[] data_cliente = (cliente_cred.get(0)).split(",");
-            Cliente cliente = new Cliente(Integer.parseInt(data_cliente[1]), data_cliente[2], ((String)user_cred.get(0)).split(",")[0], ((String)user_cred.get(0)).split(",")[1], ((String)user_cred.get(0)).split(",")[2], ((String)user_cred.get(0)).split(",")[3], ((String)user_cred.get(0)).split(",")[4],
+            Cliente cliente = new Cliente(Integer.parseInt(data_cliente[0]), data_cliente[1], ((String)user_cred.get(0)).split(",")[0], ((String)user_cred.get(0)).split(",")[1], ((String)user_cred.get(0)).split(",")[2], ((String)user_cred.get(0)).split(",")[3], ((String)user_cred.get(0)).split(",")[4],
                 ((String)user_cred.get(0)).split(",")[5], tu);
             mostrarMenuCliente(cliente);
             

@@ -1,7 +1,7 @@
 edad,numTarjetaCredito,numCedula,nombres,apellidos,user,contrasenia,numCelular,tipoDeUsuario
 25,1234-5678-9012-3451,1123456789,John,Doe,user1,password1,1234567891,C
-26,1234-5678-9012-3452,4234567890,Jane,Smith,user2,password2,1234567892,C
-27,1234-5678-9012-3453,5345678901,David,Johnson,user3,password3,1234567893,C
+26,1234-5678-9012-3452,0986353323,Jane,Smith,user2,password2,1234567892,C
+27,1234-5678-9012-3453,0945698598,Marcos,Cardenas,mcarden,abcde,1234567893,C
 28,1234-5678-9012-3454,6456789012,Amy,Brown,user4,password4,1234567894,C
 29,1234-5678-9012-3455,3567890123,Michael,White,user5,password5,1234567895,C
 30,1234-5678-9012-3456,8678901234,Emily,Miller,user6,password6,1234567896,C
