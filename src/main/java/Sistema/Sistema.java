@@ -198,7 +198,7 @@ public class Sistema {
                     c.solicitarServicioEncomienda();
                     break;
                 case 3:
-                    //consultarServicios();
+                    c.consultarServicios();
                 default:
                     System.out.println("Opción no válida, vuelva a intentar");
             }     
