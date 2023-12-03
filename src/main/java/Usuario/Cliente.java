@@ -175,10 +175,6 @@ public class Cliente extends Usuario{
                 }                
             }            
         }while(val==false);
-                        
-        System.out.println("Ingrese un tipo de servicio");
-        String tipoServicio = sc.nextLine();
-        TipoServicio tipo_Servicio= TipoServicio.valueOf(tipoServicio);
         
         System.out.println("Ingrese una forma de pago: ");
         String formaPago = sc.nextLine();
@@ -195,7 +191,7 @@ public class Cliente extends Usuario{
         Integer identificador = Integer.parseInt(id_in);
         int clave_id = (int)identificador+1;
         
-        Servicio s_taxi = new Taxi(numeroPersonas,clave_id,origenS,destinoS,date,inputHora,c_random,tipo_Servicio,forma_Pago);    
+        Servicio s_taxi = new Taxi(numeroPersonas,clave_id,origenS,destinoS,date,inputHora,c_random,TipoServicio.T,forma_Pago);    
         Taxi sT = (Taxi)s_taxi;
         
         //id pago
@@ -256,11 +252,6 @@ public class Cliente extends Usuario{
             }            
         }while(val==false);
         
-                        
-        System.out.println("Ingrese un tipo de servicio");
-        String tipoServicio = sc.nextLine();
-        TipoServicio tipo_Servicio= TipoServicio.valueOf(tipoServicio);
-        
         System.out.println("Ingrese una forma de pago: ");
         String formaPago = sc.nextLine();
         FormasPago forma_Pago = FormasPago.valueOf(formaPago);
@@ -285,7 +276,7 @@ public class Cliente extends Usuario{
         int clave_id = (int)identificador;
 
 
-        Servicio s_encomienda = new Encomienda(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,fecha,inputHora,c_random,tipo_Servicio,forma_Pago);
+        Servicio s_encomienda = new Encomienda(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,fecha,inputHora,c_random,TipoServicio.E,forma_Pago);
         Encomienda sE = (Encomienda)s_encomienda;
         
         //id pago
