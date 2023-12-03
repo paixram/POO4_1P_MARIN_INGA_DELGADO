@@ -1,0 +1,4 @@
+cedula,estado,codigoVehiculo
+0986353323,D,10
+0923547862,O,11
+0923456789,D,12

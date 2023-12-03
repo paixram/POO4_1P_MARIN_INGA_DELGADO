@@ -1,0 +1,3 @@
+idPago,FechaPago,numeroServicio,formaPago,cedulaCliente,subtotal,valorPagar
+100,03/11/2023,22000,T,0923547362,2.50,2.87
+101,05/04/2023,22001,E,0945698598,4.00,4.56

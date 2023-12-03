@@ -90,7 +90,7 @@ public class Pago {
         String lineaPago = String.format("%d,%s,%d,%s,%s,%.2f",
                 numeroPago, fechaPagoString, servicio,
                 formaPagoString, cliente.getNumCedula(), valorPagar);
-        Archivo.EscribirArchivo("pagos.txt", lineaPago);
+        Archivo.EscribirArchivo(Archivo.MyPath + "Pagos.txt", lineaPago);
         System.out.println("Pago guardado exitosamente.");
 }
     }

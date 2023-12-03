@@ -24,7 +24,15 @@ import java.util.Set;
  * @author José Marin
  */
 public class Archivo {
-        
+    
+    public static String MyPath;
+    
+    public static void setupDB() {
+        File f = new File("");
+        String dyn_work_directory = f.getAbsolutePath();
+        MyPath  = dyn_work_directory + "\\Database\\";
+        System.out.println(MyPath);
+    }
     
     public static ArrayList<String> leer(String nombreArchivo){
         ArrayList<String> lineas = new ArrayList<>();
@@ -75,7 +83,7 @@ public class Archivo {
             fichero = new FileWriter(nombreArchivo,true);
             bw = new BufferedWriter(fichero);
             bw.write(linea+"\n");
-            System.out.println("ksdsdlsd");
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -215,7 +223,6 @@ public class Archivo {
            
         }
         
-        System.out.println("Datos encontrados: "+ filtered);
         return filtered;
     }
     
@@ -234,18 +241,11 @@ public class Archivo {
                 mapvalue.get(field).add(d[i]);
             }
             
-            System.out.println(mapvalue);
-            System.out.println(mapvalue.get(field).get(0));
         }
         
         
         return mapvalue;
     }
-    
-    
-    
-    
-    
     
     
 }

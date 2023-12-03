@@ -50,7 +50,7 @@ public class Servicio {
     public void guardarServicio(String cedula) {
         String servicio_data = String.valueOf(this.getId()) + "," + String.valueOf(this.getTipoServicio()) + "," + String.valueOf(cedula) + "," + String.valueOf(this.conductorAsignado.getNombres()) + "," + String.valueOf(this.getDesde()) + "," + String.valueOf(this.getHasta()) + "," + String.valueOf(this.getFecha()) + "," + String.valueOf(this.hora);
         
-        Archivo.EscribirArchivo("../Database/Servicios.txt", servicio_data);
+        Archivo.EscribirArchivo(Archivo.MyPath + "Servicios.txt", servicio_data);
     }
 
     public void setId(int id) {

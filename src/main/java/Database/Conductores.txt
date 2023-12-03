@@ -1,2 +1,0 @@
-cedula,estado,codigoVehiculo
-0945698598,D,23

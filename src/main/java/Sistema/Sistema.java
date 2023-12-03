@@ -16,6 +16,7 @@ import java.util.Scanner;
 import utils.*;
 import Usuario.Cliente;
 import Usuario.Conductor;
+import java.io.File;
 /**
  *
  * @author José Miguel
@@ -29,6 +30,8 @@ public class Sistema {
         servicios = new ArrayList<>();
         vehiculos = new ArrayList<>();
         
+        // Path dinamico en MyPath
+        Archivo.setupDB();
         
         //HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"cedula", "0945698598"});
         //Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Conductores.txt", where, Servicio.class);
@@ -75,7 +78,9 @@ public class Sistema {
         System.out.println("+++++++++++++++++++++++++++++++++++");
         System.out.println("      BIENVENIDO AL SISTEMA");
         System.out.println("+++++++++++++++++++++++++++++++++++");
-
+        
+        
+        
         Scanner sc= new Scanner(System.in);
         System.out.print("USUARIO: ");
         String usuario = sc.nextLine();
@@ -86,7 +91,7 @@ public class Sistema {
         
         // BUSCAR EL USUARIO
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"user", usuario});
-        ArrayList<String> user_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Usuarios.txt", where, Usuario.class);
+        ArrayList<String> user_cred = Archivo.FindBy(Archivo.MyPath + "Usuarios.txt", where, Usuario.class);
         
 
         System.out.println(user_cred);
@@ -96,7 +101,6 @@ public class Sistema {
         } 
         
         String password = ((String)user_cred.get(0)).split(",")[4];
-        System.out.println(password);
         
 
         if(!contraseña.equals(password)) {
@@ -114,7 +118,7 @@ public class Sistema {
         if(tu == TipoUsuario.C) {
             System.out.println("Es cliente");
             HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"numCedula", cedula});
-            ArrayList<String> cliente_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Clientes.txt", clausule, Cliente.class);
+            ArrayList<String> cliente_cred = Archivo.FindBy(Archivo.MyPath + "Clientes.txt", clausule, Cliente.class);
 
             
             String[] data_cliente = (cliente_cred.get(0)).split(",");
@@ -126,14 +130,14 @@ public class Sistema {
             System.out.println("Es conductor");
             
             HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"cedula", cedula});
-            ArrayList<String> conductor_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Conductores.txt", clausule, Cliente.class);
+            ArrayList<String> conductor_cred = Archivo.FindBy(Archivo.MyPath + "Conductores.txt", clausule, Cliente.class);
             
             String[] data_conductor = (conductor_cred.get(0)).split(",");
             
             // Vehiculo
             
             HashMap<String, ArrayList<Object>> clausule_dos = Archivo.CreateQuery(new Object[]{"codigoVehiculo", Integer.parseInt(data_conductor[2])});
-            ArrayList<String> vehiculo_cred = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Vehiculos.txt", clausule_dos, Cliente.class);
+            ArrayList<String> vehiculo_cred = Archivo.FindBy(Archivo.MyPath + "Vehiculos.txt", clausule_dos, Cliente.class);
             
             String[] data_vehiculo = (vehiculo_cred.get(0)).split(",");
             
