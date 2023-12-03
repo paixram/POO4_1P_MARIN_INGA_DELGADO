@@ -26,6 +26,7 @@ import java.util.Set;
 public class Archivo {
     
     public static String MyPath;
+    public static HashMap<String, ArrayList<Object>> ALLDATA = new HashMap();
     
     public static void setupDB() {
         File f = new File("");
@@ -102,7 +103,7 @@ public class Archivo {
     }
     
     
-    public static ArrayList<String> FindBy(String File, HashMap<String, ArrayList<Object>> where, Object type) {
+    public static ArrayList<String> FindBy(String File, HashMap<String, ArrayList<Object>> where) {
         // leer el archivo a recuperar
         ArrayList<String> data_file_db = Archivo.leer(File);
         ArrayList<Object> s = new ArrayList();
@@ -128,14 +129,29 @@ public class Archivo {
         
         // procesar lineas y encontrar valor en los indices de busqueda y guardar el objeto del tipo deseado
         
-        
+        // verificar si se desea toda la data
         ArrayList<String> filtered = new ArrayList();
+        
+        if(where.equals(ALLDATA)) {
+            System.out.println("[ + ] Incomming all Data");
+            for(String data_lineb_line : data_file_db) {
+                if(head == 0) {
+                    head = 1;
+                    continue;
+                }
+                
+                filtered.add(data_lineb_line);
+            }
+            
+            return filtered;
+        }
+
         for(String data_linebline : data_file_db) {
             if(head == 0) {
                 head = 1;
                 continue;
             }
-         
+             
             // Parse lines into array
             String[] data_array = data_linebline.split(",");
             Set<String> data_checked = new HashSet<>();

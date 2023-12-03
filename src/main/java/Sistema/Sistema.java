@@ -91,7 +91,7 @@ public class Sistema {
         
         // BUSCAR EL USUARIO
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"user", usuario});
-        ArrayList<String> user_cred = Archivo.FindBy(Archivo.MyPath + "Usuarios.txt", where, Usuario.class);
+        ArrayList<String> user_cred = Archivo.FindBy(Archivo.MyPath + "Usuarios.txt", where);
         
 
         System.out.println(user_cred);
@@ -118,7 +118,7 @@ public class Sistema {
         if(tu == TipoUsuario.C) {
             System.out.println("Es cliente");
             HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"numCedula", cedula});
-            ArrayList<String> cliente_cred = Archivo.FindBy(Archivo.MyPath + "Clientes.txt", clausule, Cliente.class);
+            ArrayList<String> cliente_cred = Archivo.FindBy(Archivo.MyPath + "Clientes.txt", clausule);
 
             
             String[] data_cliente = (cliente_cred.get(0)).split(",");
@@ -130,14 +130,14 @@ public class Sistema {
             System.out.println("Es conductor");
             
             HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"cedula", cedula});
-            ArrayList<String> conductor_cred = Archivo.FindBy(Archivo.MyPath + "Conductores.txt", clausule, Cliente.class);
+            ArrayList<String> conductor_cred = Archivo.FindBy(Archivo.MyPath + "Conductores.txt", clausule);
             
             String[] data_conductor = (conductor_cred.get(0)).split(",");
             
             // Vehiculo
             
             HashMap<String, ArrayList<Object>> clausule_dos = Archivo.CreateQuery(new Object[]{"codigoVehiculo", Integer.parseInt(data_conductor[2])});
-            ArrayList<String> vehiculo_cred = Archivo.FindBy(Archivo.MyPath + "Vehiculos.txt", clausule_dos, Cliente.class);
+            ArrayList<String> vehiculo_cred = Archivo.FindBy(Archivo.MyPath + "Vehiculos.txt", clausule_dos);
             
             String[] data_vehiculo = (vehiculo_cred.get(0)).split(",");
             

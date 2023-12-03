@@ -59,7 +59,7 @@ public class Cliente extends Usuario{
         
         // Extraer todas los servicios que tengan la cedula del cliente
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"cedulaCliente", cedula});
-        ArrayList<String> serv = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", where, Servicio.class);
+        ArrayList<String> serv = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", where);
         
         for(String s : serv) {
             // Splitear cada servicio
@@ -84,7 +84,7 @@ public class Cliente extends Usuario{
             
             // Obtener usuario
             HashMap<String, ArrayList<Object>> clausule_user = Archivo.CreateQuery(new Object[]{"nombre", nombre_conductor});
-            ArrayList<String> user_cred = Archivo.FindBy(Archivo.MyPath + "Usuarios.txt", clausule_user, Cliente.class);
+            ArrayList<String> user_cred = Archivo.FindBy(Archivo.MyPath + "Usuarios.txt", clausule_user);
             
             String[] data_user = (user_cred.get(0)).split(",");
             
@@ -98,7 +98,7 @@ public class Cliente extends Usuario{
             
             // Obtener conductor
             HashMap<String, ArrayList<Object>> clausule_conductor = Archivo.CreateQuery(new Object[]{"cedula", cedula_user});
-            ArrayList<String> conductor_cred = Archivo.FindBy(Archivo.MyPath + "Conductores.txt", clausule_conductor, Cliente.class);
+            ArrayList<String> conductor_cred = Archivo.FindBy(Archivo.MyPath + "Conductores.txt", clausule_conductor);
             
             String[] data_conductor = (conductor_cred.get(0)).split(",");
             
@@ -108,7 +108,7 @@ public class Cliente extends Usuario{
             
             // Obtener vehiculo
             HashMap<String, ArrayList<Object>> clausule_vehiculo = Archivo.CreateQuery(new Object[]{"codigoVehiculo", codigo_vehiculo});
-            ArrayList<String> vehiculo_cred = Archivo.FindBy(Archivo.MyPath + "Vehiculos.txt", clausule_vehiculo, Cliente.class);
+            ArrayList<String> vehiculo_cred = Archivo.FindBy(Archivo.MyPath + "Vehiculos.txt", clausule_vehiculo);
             
             String[] data_vehiculo = (vehiculo_cred.get(0)).split(",");
             
@@ -120,7 +120,7 @@ public class Cliente extends Usuario{
             
             // obtener el pago
             HashMap<String, ArrayList<Object>> clausule_pago = Archivo.CreateQuery(new Object[]{"numeroServicio", numero_serv});
-            ArrayList<String> pago_cred = Archivo.FindBy(Archivo.MyPath + "Pagos.txt", clausule_pago, Cliente.class);
+            ArrayList<String> pago_cred = Archivo.FindBy(Archivo.MyPath + "Pagos.txt", clausule_pago);
             
             String[] data_pago = (pago_cred.get(0)).split(",");
             
@@ -189,7 +189,8 @@ public class Cliente extends Usuario{
         sc.nextLine();
         
         //id servicio
-        ArrayList<String> lineaServicios = Archivo.leer(Archivo.MyPath + "Servicios.txt");
+        //ArrayList<String> lineaServicios = Archivo.leer(Archivo.MyPath + "Servicios.txt");
+        ArrayList<String> lineaServicios = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", Archivo.ALLDATA);
         String[] datosUltLinea = lineaServicios.get(lineaServicios.size()-1).split(",");
         String id_in = datosUltLinea[0];        
         Integer identificador = Integer.parseInt(id_in);
@@ -199,7 +200,8 @@ public class Cliente extends Usuario{
         Taxi sT = (Taxi)s_taxi;
         
         //id pago
-        ArrayList<String> linePago = Archivo.leer("Pagos.txt");
+        //ArrayList<String> linePago = Archivo.leer("Pagos.txt");
+        ArrayList<String> linePago = Archivo.FindBy(Archivo.MyPath + "Pagos.txt", Archivo.ALLDATA);
         String[] datosUltLinea2 = linePago.get(linePago.size()-1).split(",");
         String id_in2 = datosUltLinea2[0];        
         Integer identificador2 = Integer.parseInt(id_in2);
@@ -278,7 +280,8 @@ public class Cliente extends Usuario{
         sc.nextLine();
         
 
-        ArrayList<String> lineaServicios = Archivo.leer(Archivo.MyPath + "Servicios.txt");
+        //ArrayList<String> lineaServicios = Archivo.leer(Archivo.MyPath + "Servicios.txt");
+        ArrayList<String> lineaServicios = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", Archivo.ALLDATA);
         String[] datosUltLinea = lineaServicios.get(lineaServicios.size()-1).split(",");
         String id_in = datosUltLinea[0];        
         Integer identificador = Integer.parseInt(id_in);
@@ -289,7 +292,8 @@ public class Cliente extends Usuario{
         Encomienda sE = (Encomienda)s_encomienda;
         
         //id pago
-        ArrayList<String> linePago = Archivo.leer("Pagos.txt");
+        //ArrayList<String> linePago = Archivo.leer("Pagos.txt");
+        ArrayList<String> linePago = Archivo.FindBy(Archivo.MyPath + "Pagos.txt", Archivo.ALLDATA);
         String[] datosUltLinea2 = linePago.get(linePago.size()-1).split(",");
         String id_in2 = datosUltLinea2[0];        
         Integer identificador2 = Integer.parseInt(id_in2);
@@ -312,7 +316,7 @@ public class Cliente extends Usuario{
         Scanner sc = new Scanner(System.in);
         int id_service = sc.nextInt();
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"numeroServicio",id_service});                
-        ArrayList<String> coincidencia = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", where, Servicio.class);
+        ArrayList<String> coincidencia = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", where);
         String[] partes = coincidencia.get(0).split(",");
         System.out.println("De qué forma desea pagar: T(Tarjeta de crédito)/E(Efectivo) ");
         String formaPago = sc.nextLine();
@@ -339,7 +343,7 @@ public class Cliente extends Usuario{
 
         if (tDS == TipoServicio.T){
             HashMap<String, ArrayList<Object>> where2 = Archivo.CreateQuery(new Object[]{"numeroServicio",id_service});              
-            ArrayList<String> datosViaje = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", where2, Servicio.class);
+            ArrayList<String> datosViaje = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", where2);
             String[] partesViaje = datosViaje.get(0).split(",");
             String numPasajeros = partesViaje[1];
             Integer cant = Integer.parseInt(numPasajeros);
@@ -355,7 +359,7 @@ public class Cliente extends Usuario{
             }
         }else{
             HashMap<String, ArrayList<Object>> where3 = Archivo.CreateQuery(new Object[]{"numeroServicio",id_service});              
-            ArrayList<String> datosEncomienda = Archivo.FindBy(Archivo.MyPath + "Encomiendas.txt", where3, Servicio.class);
+            ArrayList<String> datosEncomienda = Archivo.FindBy(Archivo.MyPath + "Encomiendas.txt", where3);
 
             String[] partesEncomienda = datosEncomienda.get(0).split(",");
             TipoEncomiendas tE = TipoEncomiendas.valueOf(partesEncomienda[1]);
