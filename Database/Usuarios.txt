@@ -3,3 +3,5 @@ cedula,nombre,apellido,user,contraseña,celular,tipoUsuario
 0986353323,Juan,Gómez,jgome,38373,093727266,R
 0945698598,Marco, Cárdenas,mcarden,abcde,0975342533,C
 0923547862,Julio,Gaibor,Jgaibor,bor58,0986457825,R
+0912921094,Christopher,Davis,crisdav,tsds01,0934567897,C
+0923456789,John,Doe,doejohn,jondo1,0934567891,R

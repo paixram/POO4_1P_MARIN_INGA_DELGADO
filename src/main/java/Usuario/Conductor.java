@@ -135,8 +135,9 @@ public class Conductor extends Usuario {
   
             }
 
-            conductores.add(c);
+            
             }
+            conductores.add(c);
         }
 
         return conductores;

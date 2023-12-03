@@ -199,6 +199,8 @@ public class Sistema {
                     break;
                 case 3:
                     c.consultarServicios();
+                    break;
+
                 default:
                     System.out.println("Opción no válida, vuelva a intentar");
             }     

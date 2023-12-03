@@ -55,7 +55,7 @@ public class Servicio {
         // Convertir el objeto Date de nuevo a una cadena
         String fechaFormateada = formato.format(this.getFecha());
         
-        String servicio_data = String.valueOf("\n" + this.getId()) + "," + String.valueOf(this.getTipoServicio()) + "," + String.valueOf(cedula) + "," + String.valueOf(this.conductorAsignado.getNombres()) + "," + String.valueOf(this.getDesde()) + "," + String.valueOf(this.getHasta()) + "," + fechaFormateada + "," + String.valueOf(this.hora);
+        String servicio_data = String.valueOf(this.getId()) + "," + String.valueOf(this.getTipoServicio()) + "," + String.valueOf(cedula) + "," + String.valueOf(this.conductorAsignado.getNombres()) + "," + String.valueOf(this.getDesde()) + "," + String.valueOf(this.getHasta()) + "," + fechaFormateada + "," + String.valueOf(this.hora) + "\n";
         
         Archivo.EscribirArchivo(Archivo.MyPath + "Servicios.txt", servicio_data);
     }
@@ -132,5 +132,11 @@ public class Servicio {
         return formaDePago;
     }
     
+    @Override
+    public String toString(){
+        return "Fecha: "+this.fecha+"\nHora: "+this.hora+"\nDesde: "+this.desde+
+                "\nHasta: "+this.hasta+"\nConductor asignado: "+this.conductorAsignado.getNombres()+
+                "\nCosto: "+this.costo;
+    }
     
 }

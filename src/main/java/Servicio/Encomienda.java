@@ -48,7 +48,7 @@ public class Encomienda extends Servicio {
     }
     
     public void guardarEncomienda() {
-        String ecomienda_data = String.valueOf("\n" + super.getId()) + "," + String.valueOf(this.tipoEncomienda) + "," + String.valueOf(this.cantidadProductos) + "," + String.valueOf(this.peso) + "," + String.valueOf(super.getCosto());
+        String ecomienda_data = String.valueOf(super.getId()) + "," + String.valueOf(this.tipoEncomienda) + "," + String.valueOf(this.cantidadProductos) + "," + String.valueOf(this.peso) + "," + String.valueOf(super.getCosto() + "\n");
     
         Archivo.EscribirArchivo(Archivo.MyPath + "Encomiendas.txt", ecomienda_data);
     }
@@ -79,6 +79,6 @@ public class Encomienda extends Servicio {
     
     @Override
     public String toString(){
-        return "Tipo: Encomienda" + tipoEncomienda +", cantidadProductos=" + cantidadProductos +", peso= " + peso+super.toString();  
-                }
+        return "Tipo: Encomienda" + tipoEncomienda +" \n cantidadProductos=" + cantidadProductos +"\n peso= " + peso + super.toString();  
+    }
 }

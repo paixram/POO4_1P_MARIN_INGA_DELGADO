@@ -8,6 +8,8 @@ import Usuario.Cliente;
 import java.util.Date;
 import Servicio.Servicio;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import utils.Archivo;
 import utils.FormasPago;
 /**
@@ -87,9 +89,18 @@ public class Pago {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String fechaPagoString = dateFormat.format(fechaPago);
         String formaPagoString = String.valueOf(this.servicio.getFormaDePago());
-        String lineaPago = String.format("\n" + "%d,%s,%d,%s,%s,%.2f",
-                numeroPago, fechaPagoString, servicio,
-                formaPagoString, cliente.getNumCedula(), valorPagar);
+        
+        // obtener num servicio
+        // obtener viaje con num servicio
+        HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"numeroServicio", this.servicio.getId()});
+        ArrayList<String> viaje_tuple = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", clausule);
+        
+        // obtener el subtotal
+        String viaje_subtotal = (viaje_tuple.get(0).split(","))[3];
+        System.out.println("Subtotal: " + viaje_subtotal + "   Ttoal: " + this.valorPagar);
+        String lineaPago = String.format("%d,%s,%d,%s,%s,%s,%s + \n",
+                numeroPago, fechaPagoString, this.servicio.getId(),
+                formaPagoString, cliente.getNumCedula(), viaje_subtotal,this.valorPagar);
         Archivo.EscribirArchivo(Archivo.MyPath + "Pagos.txt", lineaPago);
         System.out.println("Pago guardado exitosamente.");
 }
