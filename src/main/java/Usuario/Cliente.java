@@ -156,7 +156,6 @@ public class Cliente extends Usuario{
             System.out.println("Formato de fecha inválido. Asegúrate de ingresar la fecha en formato dd/MM/yyyy.");
         }
         
-        System.out.println(date);
         System.out.println("Ingrese la hora: ");
         String inputHora = sc.nextLine();
         
