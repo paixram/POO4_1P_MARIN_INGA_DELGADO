@@ -1,4 +1,2 @@
-tipoEncomienda,cantidadProductos,peso,id,desde,hasta,fecha,hora,conductorAsignado,tipoServicio,formaDePago
-Electrónico,2,5.5,1,Samanes 4,Ceibos Norte,3/11/2023,17:30,Luis Meza,Taxi,E
-Textil,5,12.0,2,Kennedy,Norte de la Ciudad,5/4/2023,09:45,Ana Gomez,Encomienda,T
-Fragil,1,2.0,3,Bellavista,Sauces,10/20/2023,14:15,Carlos Rodriguez,Encomienda,E
+numeroServicio,tipoEncomienda,cantidadProductos,peso
+20002,MEDICAMENTOS,2,5.5

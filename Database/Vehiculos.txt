@@ -1,7 +1,4 @@
 codigoVehiculo,placa,modelo,marca,tipo
-23,XRMD325,2023,XC3,A
-1,ABC123,2022,Honda,Sedan
-2,XYZ789,2021,Toyota,SUV
-3,LMN456,2023,Ford,Pickup
-4,PQR987,2020,Chevrolet,Hatchback
-5,JKL321,2022,Volkswagen,Camioneta
+11,XRMD325,CX3,Mazda,A
+10,ABC123,Rush,Toyota,A
+12,XYZ789,GSX-8S,Suzuki,M
