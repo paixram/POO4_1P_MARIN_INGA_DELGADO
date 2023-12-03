@@ -9,6 +9,6 @@ package utils;
  * @author José Miguel
  */
 public enum EstadoConductor {
-    OCUPADO,
-    DISPONIBLE
+    O,
+    D
 }

@@ -5,13 +5,13 @@
 
 package Usuario;
 import Servicio.*;
-
+import java.util.Random;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import utils.*;
 import utils.TipoVehiculo;
 import Vehiculo.*;
-
+import Sistema.Pago;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,6 +24,7 @@ import java.util.Scanner;
 public class Cliente extends Usuario{
     
     Scanner sc = new Scanner(System.in);
+    Random random = new Random();
     
     private int edad;
     private String numTarjetaCredito;
@@ -161,39 +162,19 @@ public class Cliente extends Usuario{
         String inputHora = sc.nextLine();
         
         //CONDUCTOR
-        Conductor c = null;
-        ArrayList<String> lineasArc = Archivo.leer("conductores.txt");
-        for (String lineas: lineasArc){
-            String[] datosConductor = lineas.split(",");
-            if (datosConductor[1].equals("D")){
-                ArrayList<String> lineasArc2 = Archivo.leer("vehículos.txt");
-                for (String l: lineasArc2){
-                    String[] datosVehiculo = l.split(",");
-                    if (datosVehiculo[0].equals(datosConductor[2])){
-                        if (datosVehiculo[4].equals("M")){
-                            ArrayList<String> lineasArc3 = Archivo.leer("usuarios.txt");
-                            for (String l3: lineasArc3){
-                                String[] datosUsuario = l3.split(",");
-                                if (datosUsuario[0].equals(datosConductor[0]));
-                                    TipoUsuario tU = TipoUsuario.valueOf(datosUsuario[datosUsuario.length-1]);
-                                    EstadoConductor eC = EstadoConductor.valueOf(datosConductor[1]);
-                                    
-                                    String codigoVehiculo = datosConductor[2];        
-                                    Integer cVehiculo = Integer.parseInt(codigoVehiculo);
-                                    int id_code = (int)cVehiculo;
-                                    
-                                    TipoVehiculo tV = TipoVehiculo.valueOf(datosVehiculo[4]);
-                                    Vehiculo v = new Vehiculo(id_code,datosVehiculo[1],datosVehiculo[2],datosVehiculo[3],tV);
-                                    
-                                    c = new Conductor(datosUsuario[0],eC,v,datosUsuario[0],datosUsuario[1],datosUsuario[2],datosUsuario[3],datosUsuario[4],datosUsuario[5],tU);
-                                
-                            }
-                        }
-                    }
+        ArrayList<Conductor> conductores = Conductor.getConductores();
+        boolean val = false;
+        Conductor c_random = null;
+        do{            
+            int pos_aleatoria = random.nextInt(conductores.size());
+            c_random = conductores.get(pos_aleatoria);
+            if (c_random.getEstado() == EstadoConductor.D){
+                Vehiculo v = c_random.getVehiculo();
+                if (v.tipo == TipoVehiculo.A){
+                    val = true;
                 }
-                
-            }
-        }
+            }            
+        }while(val==false);
                         
         System.out.println("Ingrese un tipo de servicio");
         String tipoServicio = sc.nextLine();
@@ -207,20 +188,31 @@ public class Cliente extends Usuario{
         int numeroPersonas = sc.nextInt();
         sc.nextLine();
         
-        ArrayList<String> lineaServicios = Archivo.leer("servicios.txt");
+        //id servicio
+        ArrayList<String> lineaServicios = Archivo.leer("Servicios.txt");
         String[] datosUltLinea = lineaServicios.get(lineaServicios.size()-1).split(",");
         String id_in = datosUltLinea[0];        
         Integer identificador = Integer.parseInt(id_in);
-        int clave_id = (int)identificador;
-        Servicio s_taxi = new Taxi(numeroPersonas,clave_id,origenS,destinoS,date,inputHora,c,tipo_Servicio,forma_Pago);    
+        int clave_id = (int)identificador+1;
+        
+        Servicio s_taxi = new Taxi(numeroPersonas,clave_id,origenS,destinoS,date,inputHora,c_random,tipo_Servicio,forma_Pago);    
         Taxi sT = (Taxi)s_taxi;
+        
+        //id pago
+        ArrayList<String> linePago = Archivo.leer("Pagos.txt");
+        String[] datosUltLinea2 = linePago.get(linePago.size()-1).split(",");
+        String id_in2 = datosUltLinea2[0];        
+        Integer identificador2 = Integer.parseInt(id_in2);
+        int clave_id_pago = (int)identificador2+1;
+        
         //Confirmar servicio
         System.out.print("El valor a pagar es: "+sT.calcularCosto()+". Confirme su viaje: S/N");
         String confirmacion = sc.nextLine();
         if (confirmacion.equals("S")){
-            
-        }
-        
+            Pago pago_confirmado = new Pago(clave_id_pago,date,s_taxi,this,s_taxi.getCosto());
+            sT.guardarViaje(this.getNumCedula());
+            s_taxi.guardarServicio(this.getNumCedula());
+        }        
         
         
         
@@ -249,41 +241,20 @@ public class Cliente extends Usuario{
         
         
         //CONDUCTOR]
-        Conductor c = null;
-        ArrayList<String> lineasArc = Archivo.leer("conductores.txt");
-        for (String lineas: lineasArc){
-            String[] datosConductor = lineas.split(",");
-            if (datosConductor[1].equals("D")){
-                ArrayList<String> lineasArc2 = Archivo.leer("vehículos.txt");
-                for (String l: lineasArc2){
-                    String[] datosVehiculo = l.split(",");
-                    if (datosVehiculo[0].equals(datosConductor[2])){
-                        if (datosVehiculo[4].equals("M")){
-                            ArrayList<String> lineasArc3 = Archivo.leer("usuarios.txt");
-                            for (String l3: lineasArc3){
-                                String[] datosUsuario = l3.split(",");
-                                if (datosUsuario[0].equals(datosConductor[0]));
-                                    TipoUsuario tU = TipoUsuario.valueOf(datosUsuario[datosUsuario.length-1]);
-                                    EstadoConductor eC = EstadoConductor.valueOf(datosConductor[1]);
-                                    
-                                    String codigoVehiculo = datosConductor[2];        
-                                    Integer cVehiculo = Integer.parseInt(codigoVehiculo);
-                                    int id_code = (int)cVehiculo;
-                                    
-                                    TipoVehiculo tV = TipoVehiculo.valueOf(datosVehiculo[4]);
-                                    Vehiculo v = new Vehiculo(id_code,datosVehiculo[1],datosVehiculo[2],datosVehiculo[3],tV);
-                                    
-                                    c = new Conductor(datosUsuario[0],eC,v,datosUsuario[0],datosUsuario[1],datosUsuario[2],datosUsuario[3],datosUsuario[4],datosUsuario[5],tU);
-
-                                    c = new Conductor(datosUsuario[0],eC,v,datosUsuario[0],datosUsuario[1],datosUsuario[2],datosUsuario[3],datosUsuario[4],datosUsuario[5],tU);
-                                
-                            }
-                        }
-                    }
+        ArrayList<Conductor> conductores = Conductor.getConductores();
+        boolean val = false;
+        Conductor c_random = null;
+        do{            
+            int pos_aleatoria = random.nextInt(conductores.size());
+            c_random = conductores.get(pos_aleatoria);
+            if (c_random.getEstado() == EstadoConductor.D){
+                Vehiculo v = c_random.getVehiculo();
+                if (v.tipo == TipoVehiculo.A){
+                    val = true;
                 }
-                
-            }
-        }
+            }            
+        }while(val==false);
+        
                         
         System.out.println("Ingrese un tipo de servicio");
         String tipoServicio = sc.nextLine();
@@ -305,17 +276,31 @@ public class Cliente extends Usuario{
         double peso = sc.nextDouble();
         sc.nextLine();
         
-        ArrayList<String> lineaServicios = Archivo.leer("servicios.txt");
+        ArrayList<String> lineaServicios = Archivo.leer("Servicios.txt");
         String[] datosUltLinea = lineaServicios.get(lineaServicios.size()-1).split(",");
         String id_in = datosUltLinea[0];        
         Integer identificador = Integer.parseInt(id_in);
         int clave_id = (int)identificador;
-        Servicio s_encomienda = new Encomienda(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,fecha,inputHora,c,tipo_Servicio,forma_Pago);
 
- 
-        //Servicio s_encomienda = new Taxi(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,date,ident_conductor,tipo_Servicio,forma_Pago);
 
-        //Servicio s_encomienda = new Encomienda(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,date,c,tipo_Servicio,forma_Pago);
+        Servicio s_encomienda = new Encomienda(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,fecha,inputHora,c_random,tipo_Servicio,forma_Pago);
+        Encomienda sE = (Encomienda)s_encomienda;
+        
+        //id pago
+        ArrayList<String> linePago = Archivo.leer("Pagos.txt");
+        String[] datosUltLinea2 = linePago.get(linePago.size()-1).split(",");
+        String id_in2 = datosUltLinea2[0];        
+        Integer identificador2 = Integer.parseInt(id_in2);
+        int clave_id_pago = (int)identificador2+1;
+        
+        //Confirmar servicio
+        System.out.print("El valor a pagar es: "+sE.calcularCosto()+". Confirme su viaje: S/N");
+        String confirmacion = sc.nextLine();
+        if (confirmacion.equals("S")){
+            Pago pago_confirmado = new Pago(clave_id_pago,fecha,s_encomienda,this,s_encomienda.getCosto());
+            sE.guardarEncomienda();
+            s_encomienda.guardarServicio(this.getNumCedula());
+        }
         
     }
     
