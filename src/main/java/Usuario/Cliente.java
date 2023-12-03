@@ -74,8 +74,7 @@ public class Cliente extends Usuario{
             SimpleDateFormat dateFormat_serv = new SimpleDateFormat("dd/MM/yyyy");    
             Date fecha_serv = null;
             try {             
-                fecha_serv = dateFormat_serv.parse(s_data[6]);             
-                System.out.println("Fecha ingresada: " + fecha_serv);         
+                fecha_serv = dateFormat_serv.parse(s_data[6]);                    
             } catch (ParseException e) {             
                 System.out.println("Formato de fecha inválido. Asegúrate de ingresar la fecha en formato dd/MM/yyyy.");         
             }
@@ -152,12 +151,12 @@ public class Cliente extends Usuario{
         String inputDate = sc.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            date = dateFormat.parse(inputDate);
-            System.out.println("Fecha ingresada: " + date);
+            date = dateFormat.parse(inputDate);            
         }catch (ParseException e) {
             System.out.println("Formato de fecha inválido. Asegúrate de ingresar la fecha en formato dd/MM/yyyy.");
         }
         
+        System.out.println(date);
         System.out.println("Ingrese la hora: ");
         String inputHora = sc.nextLine();
         
@@ -228,8 +227,7 @@ public class Cliente extends Usuario{
         
         Date fecha = null;
         try {
-            fecha = dateFormat.parse(inputDate);
-            System.out.println("Fecha ingresada: " + fecha);
+            fecha = dateFormat.parse(inputDate);            
         }catch (ParseException e) {
             System.out.println("Formato de fecha inválido. Asegúrate de ingresar la fecha en formato dd/MM/yyyy.");
         }

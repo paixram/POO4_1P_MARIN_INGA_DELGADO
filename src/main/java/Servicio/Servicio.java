@@ -7,7 +7,8 @@ package Servicio;
 import utils.FormasPago;
 import java.util.Date;
 import Usuario.Conductor;
-
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import utils.TipoServicio;
 
 import utils.Archivo;
@@ -48,7 +49,13 @@ public class Servicio {
     }
     
     public void guardarServicio(String cedula) {
-        String servicio_data = String.valueOf("\n" + this.getId()) + "," + String.valueOf(this.getTipoServicio()) + "," + String.valueOf(cedula) + "," + String.valueOf(this.conductorAsignado.getNombres()) + "," + String.valueOf(this.getDesde()) + "," + String.valueOf(this.getHasta()) + "," + String.valueOf(this.getFecha()) + "," + String.valueOf(this.hora);
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Convertir el objeto Date de nuevo a una cadena
+        String fechaFormateada = formato.format(this.getFecha());
+        
+        String servicio_data = String.valueOf("\n" + this.getId()) + "," + String.valueOf(this.getTipoServicio()) + "," + String.valueOf(cedula) + "," + String.valueOf(this.conductorAsignado.getNombres()) + "," + String.valueOf(this.getDesde()) + "," + String.valueOf(this.getHasta()) + "," + fechaFormateada + "," + String.valueOf(this.hora);
         
         Archivo.EscribirArchivo(Archivo.MyPath + "Servicios.txt", servicio_data);
     }
