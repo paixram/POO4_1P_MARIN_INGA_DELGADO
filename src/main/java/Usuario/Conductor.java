@@ -67,7 +67,7 @@ public class Conductor extends Usuario {
         
         // Extraer todas la chamba del conductor desde servicio
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"nombreConductor", nombre});
-        ArrayList<String> conductor_chamba = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Servicios.txt", where, Servicio.class);
+        ArrayList<String> conductor_chamba = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", where, Servicio.class);
         
         
         for(String cc : conductor_chamba) {
@@ -76,7 +76,7 @@ public class Conductor extends Usuario {
             System.out.println("Tipo: " + TipoServicio.valueOf(cc_data[1]));
             
             HashMap<String, ArrayList<Object>> clausule_serv_viaje = Archivo.CreateQuery(new Object[]{"numeroServicio", cc_data[0]});
-            ArrayList<String> conductor_viaje = Archivo.FindBy("C:\\Users\\Luizzz\\Documents\\NetBeansProjects\\POO4_1P_MARIN_INGA_DELGADO\\src\\main\\java\\Database\\Viajes.txt", clausule_serv_viaje, Servicio.class);
+            ArrayList<String> conductor_viaje = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", clausule_serv_viaje, Servicio.class);
             
             String[] cv = (conductor_viaje.get(0)).split(",");
             
@@ -97,12 +97,12 @@ public class Conductor extends Usuario {
         ArrayList<Conductor> conductores = new ArrayList<>();
         
         Conductor c = null;
-        ArrayList<String> lineasArc = Archivo.leer("conductores.txt");
+        ArrayList<String> lineasArc = Archivo.leer(Archivo.MyPath + "Conductores.txt");
         for (String lineas: lineasArc){            
             String[] datosConductor = lineas.split(",");
             String codVehiculo = datosConductor[2];
             EstadoConductor eC = EstadoConductor.valueOf(datosConductor[1]);
-            ArrayList<String> lineasArc2 = Archivo.leer("vehículos.txt");
+            ArrayList<String> lineasArc2 = Archivo.leer(Archivo.MyPath + "Vehículos.txt");
             Vehiculo v = null;
             for (String l: lineasArc2){
                 String[] datosVehiculo = l.split(",");
@@ -116,7 +116,7 @@ public class Conductor extends Usuario {
                     v = new Vehiculo(id_code,datosVehiculo[1],datosVehiculo[2],datosVehiculo[3],tV);
                 }
             }
-            ArrayList<String> lineasArc3 = Archivo.leer("usuarios.txt");
+            ArrayList<String> lineasArc3 = Archivo.leer(Archivo.MyPath + "Usuarios.txt");
             for (String l3: lineasArc3){
                 String[] datosUsuario = l3.split(",");
                 if (datosConductor[0].equals(datosUsuario[0])){

@@ -50,7 +50,7 @@ public class Encomienda extends Servicio {
     public void guardarEcomienda() {
         String ecomienda_data = String.valueOf(super.getId()) + "," + String.valueOf(this.tipoEncomienda) + "," + String.valueOf(this.cantidadProductos) + "," + String.valueOf(this.peso) + "," + String.valueOf(super.getCosto());
     
-        Archivo.EscribirArchivo("../Database/Encomiendas.txt", ecomienda_data);
+        Archivo.EscribirArchivo(Archivo.MyPath + "Encomiendas.txt", ecomienda_data);
     }
 
     public TipoEncomiendas getTipoEncomienda() {
