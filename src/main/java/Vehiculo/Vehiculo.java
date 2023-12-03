@@ -23,7 +23,8 @@ public class Vehiculo{
          ArrayList<Vehiculo> vehiculos = new ArrayList<>();
         
         Vehiculo v1 = null;
-        ArrayList<String> lineasArc = Archivo.leer(Archivo.MyPath + "Vehiculos.txt");
+        //ArrayList<String> lineasArc = Archivo.leer(Archivo.MyPath + "Vehiculos.txt");
+        ArrayList<String> lineasArc = Archivo.FindBy(Archivo.MyPath + "Vehiculos.txt", Archivo.ALLDATA);
         for (String lineas: lineasArc){            
             String[] datosVehiculos = lineas.split(",");
             String codigoVehiculo = datosVehiculos[0];

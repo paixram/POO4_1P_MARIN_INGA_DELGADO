@@ -67,7 +67,7 @@ public class Conductor extends Usuario {
         
         // Extraer todas la chamba del conductor desde servicio
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"nombreConductor", nombre});
-        ArrayList<String> conductor_chamba = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", where, Servicio.class);
+        ArrayList<String> conductor_chamba = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", where);
         
         
         for(String cc : conductor_chamba) {
@@ -76,7 +76,7 @@ public class Conductor extends Usuario {
             System.out.println("Tipo: " + TipoServicio.valueOf(cc_data[1]));
             
             HashMap<String, ArrayList<Object>> clausule_serv_viaje = Archivo.CreateQuery(new Object[]{"numeroServicio", cc_data[0]});
-            ArrayList<String> conductor_viaje = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", clausule_serv_viaje, Servicio.class);
+            ArrayList<String> conductor_viaje = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", clausule_serv_viaje);
             
             String[] cv = (conductor_viaje.get(0)).split(",");
             
@@ -97,15 +97,23 @@ public class Conductor extends Usuario {
         ArrayList<Conductor> conductores = new ArrayList<>();
         
         Conductor c = null;
-        ArrayList<String> lineasArc = Archivo.leer(Archivo.MyPath + "Conductores.txt");
-        for (String lineas: lineasArc){            
+        //ArrayList<String> lineasArc = Archivo.leer(Archivo.MyPath + "Conductores.txt");
+        
+        ArrayList<String> lineasArc = Archivo.FindBy(Archivo.MyPath + "Conductores.txt", Archivo.ALLDATA);
+        for (String lineas: lineasArc){      
+            
             String[] datosConductor = lineas.split(",");
             String codVehiculo = datosConductor[2];
+            System.out.println("dff: " + datosConductor[1]);
             EstadoConductor eC = EstadoConductor.valueOf(datosConductor[1]);
-            ArrayList<String> lineasArc2 = Archivo.leer(Archivo.MyPath + "Vehículos.txt");
+            
+            //ArrayList<String> lineasArc2 = Archivo.leer(Archivo.MyPath + "Vehiculos.txt");
+            ArrayList<String> lineasArc2 = Archivo.FindBy(Archivo.MyPath + "Vehiculos.txt", Archivo.ALLDATA);
             Vehiculo v = null;
             for (String l: lineasArc2){
+                
                 String[] datosVehiculo = l.split(",");
+                System.out.println("dff: " + datosVehiculo[0]);
                 if (codVehiculo.equals(datosVehiculo[0])){
                     
                     String codigoVehiculo = datosVehiculo[0];        
@@ -116,19 +124,23 @@ public class Conductor extends Usuario {
                     v = new Vehiculo(id_code,datosVehiculo[1],datosVehiculo[2],datosVehiculo[3],tV);
                 }
             }
-            ArrayList<String> lineasArc3 = Archivo.leer(Archivo.MyPath + "Usuarios.txt");
+     
+            //ArrayList<String> lineasArc3 = Archivo.leer(Archivo.MyPath + "Usuarios.txt");
+            ArrayList<String> lineasArc3 = Archivo.FindBy(Archivo.MyPath + "Usuarios.txt", Archivo.ALLDATA);
             for (String l3: lineasArc3){
+                
                 String[] datosUsuario = l3.split(",");
                 if (datosConductor[0].equals(datosUsuario[0])){
                     
                     TipoUsuario tU = TipoUsuario.valueOf(datosUsuario[datosUsuario.length-1]);
                     c = new Conductor(datosUsuario[0],eC,v,datosUsuario[0],datosUsuario[1],datosUsuario[2],datosUsuario[3],datosUsuario[4],datosUsuario[5],tU);
-                   
-                
+  
             }
+
             conductores.add(c);
             }
         }
+
         return conductores;
             
             
