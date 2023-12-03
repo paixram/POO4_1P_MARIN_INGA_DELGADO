@@ -204,7 +204,7 @@ public class Cliente extends Usuario{
         int clave_id_pago = (int)identificador2+1;
         
         //Confirmar servicio
-        System.out.print("El valor a pagar es: "+sT.calcularCosto()+". Confirme su viaje: S/N");
+        System.out.print("El valor a pagar es: "+sT.calcularCosto()+". \n Confirme su viaje (S/N): ");
         String confirmacion = sc.nextLine();
         if (confirmacion.equals("S")){
             Pago pago_confirmado = new Pago(clave_id_pago,date,s_taxi,this,s_taxi.getCosto());

@@ -155,52 +155,54 @@ public class Sistema {
 
      
     static void mostrarMenuConductor(Conductor r) {
-        System.out.println("/*******************************************Menu Cliente*******************************************\\");
-        System.out.println("1. Consultar Servicio Asignado");
-        System.out.println("2. Datos de su vehiculo");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Elija una opcion: ");
-        int opcion = sc.nextInt();
-        switch (opcion) {
-            case 1:
-                //consultar servicio
-                r.consultarServicios();
-                break;
-            case 2:
-                //datos de su vehiculo
-                //r.verificarDatVehiculo();
-                break;
-            
-            default:
-                System.out.println("Opción no válida, vuelva a intentar");
-    }
+        while(true){
+            System.out.println("/*******************************************Menu Conductor*******************************************\\");
+            System.out.println("1. Consultar Servicio Asignado");
+            System.out.println("2. Datos de su vehiculo");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Elija una opcion: ");
+            int opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+                    //consultar servicio
+                    r.consultarServicios();
+                    break;
+                case 2:
+                    //datos de su vehiculo
+                    Conductor.verificarDatVehiculo(r);
+                    break;
+
+                default:
+                    System.out.println("Opción no válida, vuelva a intentar");
+            }
+        }
     }
 
     static void mostrarMenuCliente(Cliente c){
-        System.out.println("/*******************************************Menu Cliente*******************************************\\");
-        System.out.println("1. Solicitar servicio de taxi");
-        System.out.println("2. Solicitar entrega de encomienda");
-        System.out.println("3. Consultar servicios");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Elija una opcion: ");
-        int opcion = sc.nextInt();
-        
-        switch (opcion) {
-            case 1:
-                //solicitarServicioTaxi();
-                c.solicitarServicioTaxi();
-                break;
-            case 2:
-                //solicitarServicioEncomienda();
-                c.solicitarServicioEncomienda();
-                break;
-            case 3:
-                //consultarServicios();
-            default:
-                System.out.println("Opción no válida, vuelva a intentar");
-        }     
+        while(true){
+            System.out.println("/*******************************************Menu Cliente*******************************************\\");
+            System.out.println("1. Solicitar servicio de taxi");
+            System.out.println("2. Solicitar entrega de encomienda");
+            System.out.println("3. Consultar servicios");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Elija una opcion: ");
+            int opcion = sc.nextInt();
 
-
+            switch (opcion) {
+                case 1:
+                    //solicitarServicioTaxi();
+                    c.solicitarServicioTaxi();
+                    break;
+                case 2:
+                    //solicitarServicioEncomienda();
+                    c.solicitarServicioEncomienda();
+                    break;
+                case 3:
+                    //consultarServicios();
+                default:
+                    System.out.println("Opción no válida, vuelva a intentar");
+            }     
+        }
     }
 }
 

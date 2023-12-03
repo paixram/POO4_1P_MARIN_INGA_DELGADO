@@ -146,7 +146,7 @@ public class Conductor extends Usuario {
     
     
         
-    public String verificarDatVehiculo(Conductor chofer){
+    public static String verificarDatVehiculo(Conductor chofer){
         Vehiculo vPropiedad = chofer.getVehiculo();
         
         if (vPropiedad.tipo==TipoVehiculo.A){

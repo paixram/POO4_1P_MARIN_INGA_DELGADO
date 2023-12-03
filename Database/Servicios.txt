@@ -2,3 +2,4 @@ numeroServicio,tipoServicio,cedulaCliente,nombreConductor,desde,hasta,fecha,hora
 22000,T,0923547362,Juan Gómez,Samanes 4,Ceibos Norte,03/11/2023,17:30
 22001,E,0945698598,Julio Gaibor,Kennedy,Norte de la Ciudad,05/04/2023,09:45
 20002,T,0912921094,John Doe,Prosperina,Campus ESPOL Gustavo Galindo,10/05/2023,12:30
+20003,T,0945698598,Juan,desde,hasta,Sun Jul 02 00:00:00 ECT 2023,7:23

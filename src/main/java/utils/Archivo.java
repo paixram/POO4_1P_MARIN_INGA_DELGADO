@@ -106,6 +106,8 @@ public class Archivo {
     public static ArrayList<String> FindBy(String File, HashMap<String, ArrayList<Object>> where) {
         // leer el archivo a recuperar
         ArrayList<String> data_file_db = Archivo.leer(File);
+        data_file_db.removeIf(String::isEmpty); // remove null items or blank lines
+        
         ArrayList<Object> s = new ArrayList();
         
         int head = 0;
