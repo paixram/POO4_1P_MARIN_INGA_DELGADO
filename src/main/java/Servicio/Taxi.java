@@ -59,7 +59,7 @@ public class Taxi extends Servicio {
     }
     
     public void guardarViaje(String cedula) {
-        String viaje_data = String.valueOf(super.getId()) + "," + String.valueOf(this.numeroPersonas) + "," + String.valueOf(super.getCosto() / this.cpk) + "," + String.valueOf(super.getCosto());
+        String viaje_data = String.valueOf("\n" + super.getId()) + "," + String.valueOf(this.numeroPersonas) + "," + String.valueOf(super.getCosto() / this.cpk) + "," + String.valueOf(super.getCosto());
     
         Archivo.EscribirArchivo(Archivo.MyPath + "Viajes.txt", viaje_data);
     }

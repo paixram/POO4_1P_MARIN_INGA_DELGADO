@@ -87,7 +87,7 @@ public class Pago {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String fechaPagoString = dateFormat.format(fechaPago);
         String formaPagoString = String.valueOf(this.servicio.getFormaDePago());
-        String lineaPago = String.format("%d,%s,%d,%s,%s,%.2f",
+        String lineaPago = String.format("\n" + "%d,%s,%d,%s,%s,%.2f",
                 numeroPago, fechaPagoString, servicio,
                 formaPagoString, cliente.getNumCedula(), valorPagar);
         Archivo.EscribirArchivo(Archivo.MyPath + "Pagos.txt", lineaPago);

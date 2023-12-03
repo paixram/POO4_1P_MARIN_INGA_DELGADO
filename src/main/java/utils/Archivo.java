@@ -133,7 +133,6 @@ public class Archivo {
         ArrayList<String> filtered = new ArrayList();
         
         if(where.equals(ALLDATA)) {
-            System.out.println("[ + ] Incomming all Data");
             for(String data_lineb_line : data_file_db) {
                 if(head == 0) {
                     head = 1;

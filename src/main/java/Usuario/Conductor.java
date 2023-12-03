@@ -104,7 +104,6 @@ public class Conductor extends Usuario {
             
             String[] datosConductor = lineas.split(",");
             String codVehiculo = datosConductor[2];
-            System.out.println("dff: " + datosConductor[1]);
             EstadoConductor eC = EstadoConductor.valueOf(datosConductor[1]);
             
             //ArrayList<String> lineasArc2 = Archivo.leer(Archivo.MyPath + "Vehiculos.txt");
@@ -113,7 +112,6 @@ public class Conductor extends Usuario {
             for (String l: lineasArc2){
                 
                 String[] datosVehiculo = l.split(",");
-                System.out.println("dff: " + datosVehiculo[0]);
                 if (codVehiculo.equals(datosVehiculo[0])){
                     
                     String codigoVehiculo = datosVehiculo[0];        
