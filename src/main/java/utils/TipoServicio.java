@@ -5,7 +5,8 @@
 package utils;
 
 /**
- *
+ * Enumeración que representa los tipos de servicio disponibles.
+ * Estos valores indican las categorías o tipos de servicios que pueden manejarse en el sistema. 
  * @author José Marin
  */
 public enum TipoServicio {

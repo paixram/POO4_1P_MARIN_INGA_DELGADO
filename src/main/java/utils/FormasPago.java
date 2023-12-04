@@ -5,7 +5,8 @@
 package utils;
 
 /**
- *
+ * Enumeración que representa las formas de pago disponibles.
+ * Estos valores indican las opciones de pago que pueden utilizarse en el sistema.
  * @author Luizzz
  */
 public enum FormasPago {

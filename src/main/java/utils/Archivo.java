@@ -20,21 +20,36 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *
+ * La clase `Archivo` proporciona métodos para leer y escribir archivos, así como realizar búsquedas
+ * y consultas en archivos de datos. También incluye métodos para configurar la ruta del archivo
+ * y definir consultas mediante un sistema de búsqueda basado en hashmap.
+ * 
  * @author José Marin
  */
 public class Archivo {
-    
+    /**
+     * Ruta del directorio de trabajo.
+     */
     public static String MyPath;
+    /**
+     * Valor utilizado para realizar búsquedas sin restricciones en los datos del archivo.
+     */
     public static HashMap<String, ArrayList<Object>> ALLDATA = new HashMap();
-    
+     /**
+     * Configura el directorio de trabajo al directorio actual.
+     */
     public static void setupDB() {
         File f = new File("");
         String dyn_work_directory = f.getAbsolutePath();
         MyPath  = dyn_work_directory + "\\Database\\";
         System.out.println(MyPath);
     }
-    
+    /**
+     * Lee un archivo y devuelve las líneas como una lista de cadenas.
+     * 
+     * @param nombreArchivo Nombre del archivo a leer.
+     * @return Lista de cadenas que representan las líneas del archivo.
+     */
     public static ArrayList<String> leer(String nombreArchivo){
         ArrayList<String> lineas = new ArrayList<>();
         File archivo = null;
@@ -74,7 +89,12 @@ public class Archivo {
 
     }
     
-    
+    /**
+     * Escribe una línea en un archivo.
+     * 
+     * @param nombreArchivo Nombre del archivo en el que se escribirá la línea.
+     * @param linea Línea de texto a escribir en el archivo.
+     */
     public static void EscribirArchivo(String nombreArchivo, String linea) {
 
         FileWriter fichero = null;
@@ -102,7 +122,13 @@ public class Archivo {
         }
     }
     
-    
+    /**
+     * Realiza una búsqueda en un archivo basada en los criterios especificados en el hashmap `where`.
+     * 
+     * @param File Nombre del archivo en el que se realizará la búsqueda.
+     * @param where HashMap que contiene los criterios de búsqueda.
+     * @return Lista de cadenas que coinciden con los criterios de búsqueda.
+     */
     public static ArrayList<String> FindBy(String File, HashMap<String, ArrayList<Object>> where) {
         // leer el archivo a recuperar
         ArrayList<String> data_file_db = Archivo.leer(File);
@@ -243,7 +269,12 @@ public class Archivo {
         return filtered;
     }
     
-    
+    /**
+     * Crea una consulta utilizando los valores proporcionados y devuelve un hashmap.
+     * 
+     * @param values Arreglo de objetos que representan los valores de la consulta.
+     * @return HashMap que contiene los valores de la consulta.
+     */
     public static HashMap<String, ArrayList<Object>> CreateQuery(Object[]... values) {
         
         // Map

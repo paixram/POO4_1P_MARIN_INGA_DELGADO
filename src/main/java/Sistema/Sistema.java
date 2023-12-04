@@ -18,13 +18,20 @@ import Usuario.Cliente;
 import Usuario.Conductor;
 import java.io.File;
 /**
- *
+ * La clase `Sistema` representa el sistema principal que gestiona usuarios, servicios y vehículos.
+ * Proporciona métodos para validar el acceso, mostrar menús y realizar operaciones en el sistema.
+ * 
  * @author José Miguel
  */
 public class Sistema {
   static ArrayList<Usuario> usuarios;
   static ArrayList<Servicio> servicios;
   static ArrayList<Vehiculo> vehiculos;
+    /**
+   * Método principal que inicia el sistema.
+   * 
+   * @param args Argumentos de la línea de comandos (no se utilizan).
+   */
     public static void main(String[] args) {
         usuarios = new ArrayList<>();
         servicios = new ArrayList<>();
@@ -39,6 +46,7 @@ public class Sistema {
 
         validarAcceso();
     }
+    //metodos de acceso
     public static ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -64,7 +72,13 @@ public class Sistema {
         Sistema.vehiculos = vehiculos;
     }
 
-  
+    /**
+   * Constructor de la clase `Sistema`.
+   * 
+   * @param usuarios Lista de usuarios en el sistema.
+   * @param servicios Lista de servicios en el sistema.
+   * @param vehiculos Lista de vehículos en el sistema.
+   */
     public Sistema(ArrayList<Usuario> usuarios,ArrayList<Servicio> servicios,ArrayList<Vehiculo> vehiculos) {
         this.usuarios=usuarios;
         this.vehiculos=vehiculos;
@@ -73,7 +87,9 @@ public class Sistema {
     }
 
     
-
+    /**
+   * Método que valida el acceso al sistema mediante la entrada de usuario y contraseña.
+   */
     static void validarAcceso(){
         System.out.println("+++++++++++++++++++++++++++++++++++");
         System.out.println("      BIENVENIDO AL SISTEMA");
@@ -153,7 +169,11 @@ public class Sistema {
     
     
 
-     
+    /**
+   * Muestra el menú para un conductor y gestiona las opciones seleccionadas.
+   * 
+   * @param r Conductor para el cual se muestra el menú.
+   */ 
     static void mostrarMenuConductor(Conductor r) {
         while(true){
             System.out.println("/*******************************************Menu Conductor*******************************************\\");
@@ -177,7 +197,11 @@ public class Sistema {
             }
         }
     }
-
+    /**
+   * Muestra el menú para un cliente y gestiona las opciones seleccionadas.
+   * 
+   * @param c Cliente para el cual se muestra el menú.
+   */
     static void mostrarMenuCliente(Cliente c){
         while(true){
             System.out.println("/*******************************************Menu Cliente*******************************************\\");

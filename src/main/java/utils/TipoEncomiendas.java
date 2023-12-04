@@ -5,7 +5,8 @@
 package utils;
 
 /**
- *
+ * Enumeración que representa los tipos de encomiendas disponibles.
+ * Estos valores indican las categorías o tipos de encomiendas que pueden manejarse en el sistema.
  * @author Luizzz
  */
 public enum TipoEncomiendas {

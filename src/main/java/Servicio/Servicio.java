@@ -15,6 +15,7 @@ import utils.Archivo;
 
 
 /**
+ * La clase Servicio representa un servicio de transporte genérico.
  *
  * @author Luizzz
  */
@@ -29,7 +30,18 @@ public class Servicio {
     private FormasPago formaDePago;
     private String hora;
 
-
+     /**
+     * Constructor de la clase Servicio.
+     *
+     * @param id                Identificador del servicio.
+     * @param desde             Lugar de origen del servicio.
+     * @param hasta             Lugar de destino del servicio.
+     * @param fecha             Fecha del servicio.
+     * @param hora              Hora del servicio.
+     * @param conductorAsignado Conductor asignado al servicio.
+     * @param tipoServicio      Tipo de servicio.
+     * @param formaDePago       Forma de pago del servicio.
+     */
     public Servicio(int id, String desde, String hasta, Date fecha, String hora, Conductor conductorAsignado, TipoServicio tipoServicio, FormasPago formaDePago) {
 
         this.id = id;
@@ -41,13 +53,21 @@ public class Servicio {
         this.tipoServicio = tipoServicio;
         this.formaDePago = formaDePago;
     }
-    
+     /**
+     * Calcula el costo del servicio. Este método debe ser implementado por las clases que heredan de Servicio.
+     *
+     * @return El costo del servicio.
+     */
     public double calcularCosto() {
         System.out.println("***************************** Calculando costo *****************************");
    
         return 0.0;
     }
-    
+     /**
+     * Guarda los detalles del servicio en un archivo.
+     *
+     * @param cedula Cédula del usuario asociado al servicio.
+     */
     public void guardarServicio(String cedula) {
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -59,7 +79,7 @@ public class Servicio {
         
         Archivo.EscribirArchivo(Archivo.MyPath + "Servicios.txt", servicio_data);
     }
-
+    //metodos de acceso
     public void setId(int id) {
         this.id = id;
     }
@@ -131,7 +151,11 @@ public class Servicio {
     public FormasPago getFormaDePago() {
         return formaDePago;
     }
-    
+     /**
+     * Representación en cadena del servicio.
+     *
+     * @return Cadena que representa los detalles del servicio.
+     */
     @Override
     public String toString(){
         return "Fecha: "+this.fecha+"\nHora: "+this.hora+"\nDesde: "+this.desde+

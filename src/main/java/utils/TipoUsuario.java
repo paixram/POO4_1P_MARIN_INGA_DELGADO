@@ -5,7 +5,8 @@
 package utils;
 
 /**
- *
+ * Enumeración que representa los tipos de usuarios en el sistema.
+ * Estos valores indican los roles que puede tener un usuario en el sistema.
  * @author José Miguel
  */
 public enum TipoUsuario {

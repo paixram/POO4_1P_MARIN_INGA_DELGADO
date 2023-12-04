@@ -19,7 +19,10 @@ import utils.Archivo;
 import utils.TipoServicio;
 import utils.TipoVehiculo;
 /**
- *
+ * La clase `Conductor` representa a un usuario que es conductor en el sistema.
+ * Hereda de la clase `Usuario` e incluye información adicional como el número de licencia,
+ * estado del conductor y el vehículo asociado.
+ * 
  * @author José Marin
  */
 public class Conductor extends Usuario {
@@ -27,14 +30,27 @@ public class Conductor extends Usuario {
     private String numLicencia;
     private EstadoConductor estado;
     private Vehiculo vehiculo;
-
+     /**
+     * Constructor de la clase `Conductor`.
+     * 
+     * @param numLicencia Número de licencia del conductor.
+     * @param estado Estado actual del conductor.
+     * @param vehiculo Vehículo asociado al conductor.
+     * @param numCedula Número de cédula del conductor.
+     * @param nombres Nombres del conductor.
+     * @param apellidos Apellidos del conductor.
+     * @param user Nombre de usuario del conductor.
+     * @param contrasenia Contraseña del conductor.
+     * @param numCelular Número de celular del conductor.
+     * @param tipoDeUsuario Tipo de usuario (en este caso, TipoUsuario.C para conductor).
+     */
     public Conductor(String numLicencia, EstadoConductor estado, Vehiculo vehiculo, String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, TipoUsuario tipoDeUsuario) {
         super(numCedula, nombres, apellidos, user, contrasenia, numCelular, tipoDeUsuario);
         this.numLicencia = numLicencia;
         this.estado = estado;
         this.vehiculo = vehiculo;
     }
-
+    //metodos de acceso
     //getters
     public String getNumLicencia() {
         return numLicencia;
@@ -60,7 +76,9 @@ public class Conductor extends Usuario {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-    
+    /**
+     * Consulta los servicios asignados al conductor e imprime la información relevante.
+     */
     @Override
     public void consultarServicios(){
         String nombre = this.getNombres();
@@ -92,7 +110,11 @@ public class Conductor extends Usuario {
             System.out.println("Hasta: " + cc_data[5]);
         }
     }
-    
+     /**
+     * Obtiene la lista de conductores en el sistema.
+     * 
+     * @return Lista de conductores en el sistema.
+     */
     public static ArrayList<Conductor> getConductores(){
         ArrayList<Conductor> conductores = new ArrayList<>();
         
@@ -146,7 +168,12 @@ public class Conductor extends Usuario {
     }
     
     
-        
+     /**
+     * Verifica el tipo de vehículo del conductor (carro o moto) y devuelve el resultado.
+     * 
+     * @param chofer Conductor para el cual se verifica el tipo de vehículo.
+     * @return Tipo de vehículo del conductor (carro o moto).
+     */    
     public static String verificarDatVehiculo(Conductor chofer){
         Vehiculo vPropiedad = chofer.getVehiculo();
         

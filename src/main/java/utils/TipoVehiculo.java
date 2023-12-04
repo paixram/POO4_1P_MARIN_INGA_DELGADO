@@ -5,7 +5,8 @@
 package utils;
 
 /**
- *
+ * Enumeración que representa los tipos de vehículos en el sistema.
+ * Estos valores indican los tipos de vehículos que pueden ser utilizados en el sistema.
  * @author José Miguel
  */
 public enum TipoVehiculo {

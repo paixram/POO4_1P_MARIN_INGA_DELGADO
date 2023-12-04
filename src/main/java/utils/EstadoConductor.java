@@ -5,7 +5,8 @@
 package utils;
 
 /**
- *
+ * Enumeración que representa los posibles estados de un conductor.
+ * Estos estados indican la disponibilidad del conductor para realizar servicios.
  * @author José Miguel
  */
 public enum EstadoConductor {

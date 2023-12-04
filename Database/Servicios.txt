@@ -5,3 +5,4 @@ numeroServicio,tipoServicio,cedulaCliente,nombreConductor,desde,hasta,fecha,hora
 
 22003,E,0945698598,Juan,trinity,guasmo vice city,04/07/2023,3:00
 22004,E,0945698598,Juan,trinity,guasmo,03/07/2021,4:45
+22005,E,0945698598,Juan,gye,cuenca,09/08/2023,10:45

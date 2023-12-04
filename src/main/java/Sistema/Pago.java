@@ -14,7 +14,10 @@ import utils.Archivo;
 import utils.FormasPago;
 import utils.TipoServicio;
 /**
- *
+ * La clase Pago representa una transacción de pago asociada a un servicio.
+ * Contiene información sobre el número de pago, fecha de pago, servicio asociado,
+ * cliente que realizó el pago y el valor a pagar.
+ * 
  * @author José Miguel
  */
 public class Pago {
@@ -25,7 +28,15 @@ public class Pago {
     private Cliente cliente;
     private double valorPagar;
     
-
+    /**
+     * Constructor de la clase Pago.
+     *
+     * @param numeroPago Número de identificación único del pago.
+     * @param fechaPago Fecha en que se realizó el pago.
+     * @param servicio Servicio asociado al pago.
+     * @param cliente Cliente que realizó el pago.
+     * @param valorPagar Valor a pagar en el servicio.
+     */
     public Pago(int numeroPago,Date fechaPago,Servicio servicio,Cliente cliente,double valorPagar ){
         this.numeroPago=numeroPago;
         this.fechaPago=fechaPago;
@@ -34,7 +45,7 @@ public class Pago {
         this.valorPagar=valorPagar;
     }
     
-
+    //Metodos de acceso
     public int getNumeroPago() {
         return numeroPago;
     }
@@ -74,7 +85,11 @@ public class Pago {
     public void setValorPagar(double valoraPagar) {
         this.valorPagar = valoraPagar;
     }
-    
+    /**
+     * Representación en cadena del pago.
+     *
+     * @return Cadena que representa los detalles del pago.
+     */
     @Override
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -86,6 +101,9 @@ public class Pago {
                 "\nValor a Pagar: $" + valorPagar;
     
 }
+    /**
+     * Guarda los detalles del pago en un archivo.
+     */
     public void guardarPago() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String fechaPagoString = dateFormat.format(fechaPago);

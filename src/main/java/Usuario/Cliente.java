@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
+ * La clase Cliente representa a un usuario del tipo Cliente en el sistema de servicios de transporte.
+ * Contiene métodos para consultar, solicitar y pagar servicios.
  *
  * @author José Marin
  */
@@ -28,13 +30,25 @@ public class Cliente extends Usuario{
     
     private int edad;
     private String numTarjetaCredito;
-    
+    /**
+     * Constructor de la clase Cliente.
+     * 
+     * @param edad Edad del cliente.
+     * @param numTarjetaCredito Número de tarjeta de crédito del cliente.
+     * @param numCedula Número de cédula del cliente.
+     * @param nombres Nombres del cliente.
+     * @param apellidos Apellidos del cliente.
+     * @param user Nombre de usuario del cliente.
+     * @param contrasenia Contraseña del cliente.
+     * @param numCelular Número de celular del cliente.
+     * @param tipoDeUsuario Tipo de usuario (Cliente).
+     */
     public Cliente(int edad, String numTarjetaCredito, String numCedula, String nombres, String apellidos, String user, String contrasenia, String numCelular, TipoUsuario tipoDeUsuario) {
         super(numCedula, nombres, apellidos, user, contrasenia, numCelular, tipoDeUsuario);
         this.edad = edad;
         this.numTarjetaCredito = numTarjetaCredito;
     }
-    
+    // Metodos de acceso
     //getters
     public int getEdad(){
         return edad;
@@ -50,7 +64,9 @@ public class Cliente extends Usuario{
     public void setNumTarjetaCredito(String numTarjetaCredito){
         this.numTarjetaCredito = numTarjetaCredito;
     }
-
+     /**
+     * Consulta los servicios solicitados por el cliente.
+     */
     @Override
     public void consultarServicios(){
         ArrayList<Servicio> serviciosSolicitados = new ArrayList<>();
@@ -184,7 +200,9 @@ public class Cliente extends Usuario{
     }
     
     
-    
+     /**
+     * Solicita un servicio de taxi.
+     */
     public void solicitarServicioTaxi(){
         System.out.println("Ingrese el origen: ");
         String origenS = sc.nextLine();
@@ -279,7 +297,9 @@ public class Cliente extends Usuario{
         
         
     }
-    
+    /**
+     * Solicita un servicio de encomienda.
+     */
     public void solicitarServicioEncomienda(){
         System.out.println("Ingrese el origen: ");
         String origenS = sc.nextLine();
@@ -364,7 +384,9 @@ public class Cliente extends Usuario{
         }
         
     }
-    
+     /**
+     * Realiza el pago de un servicio.
+     */
     public void pagarServicio(){
         this.consultarServicios();
         System.out.println("Determine el servicio a pagar con el id: ");
