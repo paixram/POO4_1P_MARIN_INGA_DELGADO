@@ -55,7 +55,7 @@ public class Servicio {
         // Convertir el objeto Date de nuevo a una cadena
         String fechaFormateada = formato.format(this.getFecha());
         
-        String servicio_data = String.valueOf(this.getId()) + "," + String.valueOf(this.getTipoServicio()) + "," + String.valueOf(cedula) + "," + String.valueOf(this.conductorAsignado.getNombres()) + "," + String.valueOf(this.getDesde()) + "," + String.valueOf(this.getHasta()) + "," + fechaFormateada + "," + String.valueOf(this.hora) + "\n";
+        String servicio_data = String.valueOf(this.getId()) + "," + String.valueOf(this.getTipoServicio()) + "," + String.valueOf(cedula) + "," + String.valueOf(this.conductorAsignado.getNombres()) + "," + String.valueOf(this.getDesde()) + "," + String.valueOf(this.getHasta()) + "," + fechaFormateada + "," + String.valueOf(this.hora);
         
         Archivo.EscribirArchivo(Archivo.MyPath + "Servicios.txt", servicio_data);
     }

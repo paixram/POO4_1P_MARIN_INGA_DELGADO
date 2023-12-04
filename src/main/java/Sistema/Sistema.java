@@ -94,7 +94,7 @@ public class Sistema {
         ArrayList<String> user_cred = Archivo.FindBy(Archivo.MyPath + "Usuarios.txt", where);
         
 
-        System.out.println(user_cred);
+        //System.out.println(user_cred);
         if(user_cred.isEmpty()) {
             System.out.println("No existe usuario llamado: " + usuario);
             return;

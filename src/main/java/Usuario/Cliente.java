@@ -60,7 +60,7 @@ public class Cliente extends Usuario{
         // Extraer todas los servicios que tengan la cedula del cliente
         HashMap<String, ArrayList<Object>> where = Archivo.CreateQuery(new Object[]{"cedulaCliente", cedula});
         ArrayList<String> serv = Archivo.FindBy(Archivo.MyPath + "Servicios.txt", where);
-        System.out.println("Coincidencias: " + serv);
+        //System.out.println("Coincidencias: " + serv);
         for(String s : serv) {
             // Splitear cada servicio
             String[] s_data = s.split(",");
@@ -120,8 +120,7 @@ public class Cliente extends Usuario{
             // obtener el pago
             HashMap<String, ArrayList<Object>> clausule_pago = Archivo.CreateQuery(new Object[]{"numeroServicio", numero_serv});
             ArrayList<String> pago_cred = Archivo.FindBy(Archivo.MyPath + "Pagos.txt", clausule_pago);
-            System.out.println("El servisiosh: " + numero_serv);
-            System.out.println("El pagosh: " + pago_cred);
+            
             String[] data_pago = (pago_cred.get(0)).split(",");
 
             FormasPago forma_pago = FormasPago.valueOf(data_pago[3]);
@@ -245,22 +244,34 @@ public class Cliente extends Usuario{
         Integer identificador2 = Integer.parseInt(id_in2);
         int clave_id_pago = (int)identificador2+1;
         
-        //s_taxi.setCosto(sT.calcularCosto());
+        s_taxi.setCosto(sT.calcularCosto());
         
+        
+        /*
         if(forma_Pago == FormasPago.T) {
           s_taxi.setCosto(sT.calcularCosto(this.numTarjetaCredito));
         }else if (forma_Pago == FormasPago.E){
           s_taxi.setCosto(sT.calcularCosto());
-        }
+        }*/
+        
         
         //Confirmar servicio
-        System.out.print("El valor a pagar es: "+sT.calcularCosto()+". \n Confirme su viaje (S/N): ");
+        System.out.print("El valor a pagar es: "+s_taxi.getCosto()+".\nConfirme su viaje (S/N): ");
         String confirmacion = sc.nextLine();
         if (confirmacion.equals("S")){
-            Pago pago_confirmado = new Pago(clave_id_pago,date,s_taxi,this,s_taxi.getCosto());
+            
             s_taxi.guardarServicio(this.getNumCedula());
             sT.guardarViaje(this.getNumCedula());
-            pago_confirmado.guardarPago();
+            if(forma_Pago == FormasPago.T) {
+                //s_taxi.setCosto(sT.calcularCosto(this.numTarjetaCredito));
+                Pago pago_confirmado = new Pago(clave_id_pago,date,s_taxi,this,sT.calcularCosto(this.numTarjetaCredito));
+                pago_confirmado.guardarPago();
+            }else if (forma_Pago == FormasPago.E){
+                Pago pago_confirmado = new Pago(clave_id_pago,date,s_taxi,this,s_taxi.getCosto());
+                pago_confirmado.guardarPago();
+            }
+            //Pago pago_confirmado = new Pago(clave_id_pago,date,s_taxi,this,s_taxi.getCosto());
+            //pago_confirmado.guardarPago();
         }        
         
         
@@ -326,7 +337,7 @@ public class Cliente extends Usuario{
         String[] datosUltLinea = lineaServicios.get(lineaServicios.size()-1).split(",");
         String id_in = datosUltLinea[0];        
         Integer identificador = Integer.parseInt(id_in);
-        int clave_id = (int)identificador;
+        int clave_id = (int)identificador+1;
 
 
         Servicio s_encomienda = new Encomienda(tipo_Encomienda,cantidadProductos,peso,clave_id,origenS,destinoS,fecha,inputHora,c_random,TipoServicio.E,forma_Pago);
@@ -347,6 +358,7 @@ public class Cliente extends Usuario{
             Pago pago_confirmado = new Pago(clave_id_pago,fecha,s_encomienda,this,s_encomienda.getCosto());
             sE.guardarEncomienda();
             s_encomienda.guardarServicio(this.getNumCedula());
+            pago_confirmado.guardarPago();
         }
         
     }

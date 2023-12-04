@@ -86,7 +86,7 @@ public class Pago {
     
 }
     public void guardarPago() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String fechaPagoString = dateFormat.format(fechaPago);
         String formaPagoString = String.valueOf(this.servicio.getFormaDePago());
         
@@ -97,8 +97,8 @@ public class Pago {
         
         // obtener el subtotal
         String viaje_subtotal = (viaje_tuple.get(0).split(","))[3];
-        System.out.println("Subtotal: " + viaje_subtotal + "   Ttoal: " + this.valorPagar);
-        String lineaPago = String.format("%d,%s,%d,%s,%s,%s,%s + \n",
+        System.out.println("Subtotal: " + viaje_subtotal + "   Total: " + this.valorPagar);
+        String lineaPago = String.format("%d,%s,%d,%s,%s,%s,%s",
                 numeroPago, fechaPagoString, this.servicio.getId(),
                 formaPagoString, cliente.getNumCedula(), viaje_subtotal,this.valorPagar);
         Archivo.EscribirArchivo(Archivo.MyPath + "Pagos.txt", lineaPago);

@@ -47,19 +47,20 @@ public class Taxi extends Servicio {
     }
     
     public double calcularCosto(String TC) {
-        double subtotal = this.calcularCosto();
+        double subtotal = this.getCosto();
         double valorFinal = 0;
         
         valorFinal += subtotal + (subtotal * 0.10);
         valorFinal += valorFinal + (valorFinal * 0.15);
         
-        super.setCosto(subtotal);
+        //super.setCosto(subtotal);
         
-        return subtotal;
+        return valorFinal;
     }
     
     public void guardarViaje(String cedula) {
-        String viaje_data = String.valueOf(super.getId()) + "," + String.valueOf(this.numeroPersonas) + "," + String.valueOf(super.getCosto() / this.cpk) + "," + String.valueOf(super.getCosto() + "\n");
+        
+        String viaje_data = String.valueOf(super.getId()) + "," + String.valueOf(this.numeroPersonas) + "," + String.valueOf(super.getCosto() / this.cpk) + "," + String.valueOf(super.getCosto());
     
         Archivo.EscribirArchivo(Archivo.MyPath + "Viajes.txt", viaje_data);
         System.out.println("Viaje guardado correctamente!");
