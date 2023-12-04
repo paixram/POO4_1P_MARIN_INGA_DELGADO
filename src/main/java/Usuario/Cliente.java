@@ -129,16 +129,44 @@ public class Cliente extends Usuario{
             // crear el vehiculo, conductor, servicio
             Vehiculo vh = new Vehiculo(codigo_vehi, placa_vehi, modelo_vehi, marca_vehi, tv);
             Conductor c = new Conductor(conductor_cedula, ec, vh, cedula_user, nombre_user, apellido_user, user_user, contraseña_user, celular, tu);
-            Servicio serv_n = new Servicio(numero_serv, desde_serv, hasta_serv, fecha_serv, hora_serv, c, t_serv, forma_pago);
             
-            serv_n.setCosto(Double.parseDouble(data_pago[6]));
-            serviciosSolicitados.add(serv_n);
+            // Separar entre servicios taxi y encomiendas
+            if(t_serv == TipoServicio.T) {
+                // Obtener  n pasajeros
+                HashMap<String, ArrayList<Object>> where_ta = Archivo.CreateQuery(new Object[]{"numeroServicio", numero_serv});
+                ArrayList<String> viaje = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", where_ta);
+                Integer n_pasajeros = Integer.parseInt(viaje.get(0).split(",")[1]);
+                Servicio serv_n = new Taxi(n_pasajeros, numero_serv, desde_serv, hasta_serv, fecha_serv, hora_serv, c, t_serv, forma_pago);
+                
+                // setear pago 
+                serv_n.setCosto(Double.parseDouble(data_pago[6]));
+                
+                serviciosSolicitados.add(serv_n);
+            }else if(t_serv == TipoServicio.E) {
+                HashMap<String, ArrayList<Object>> where_en = Archivo.CreateQuery(new Object[]{"numeroServicio", numero_serv});
+                ArrayList<String> encomienda = Archivo.FindBy(Archivo.MyPath + "Encomiendas.txt", where_en);
+                //Integer n_pasajeros = Integer.parseInt(viaje.get(0).split(",")[1]);
+                String[] enco = encomienda.get(0).split(",");
+                TipoEncomiendas te = TipoEncomiendas.valueOf(enco[1]);
+                Integer cp = Integer.parseInt(enco[2]);
+                Double peso = Double.parseDouble(enco[3]);
+                Servicio serv_n = new Encomienda(te, cp, peso, numero_serv, desde_serv, hasta_serv, fecha_serv, hora_serv, c, t_serv, forma_pago);
+                
+                // setear costo
+                serv_n.setCosto(Double.parseDouble(data_pago[6]));
+                
+                serviciosSolicitados.add(serv_n);
+            }
+            
+            //Servicio serv_n = new Servicio(numero_serv, desde_serv, hasta_serv, fecha_serv, hora_serv, c, t_serv, forma_pago);
+            
+            //serv_n.setCosto(Double.parseDouble(data_pago[6]));
+            //serviciosSolicitados.add(serv_n);
         }
         
         int i = 1;
         for(Servicio servd : serviciosSolicitados) {
             
-            System.out.println(servd);
             if(servd instanceof Taxi) {
                System.out.println("************************ Servicio " + i + " + TAXI ************************"); 
                Taxi t = (Taxi)servd;
@@ -221,8 +249,8 @@ public class Cliente extends Usuario{
         
         if(forma_Pago == FormasPago.T) {
           s_taxi.setCosto(sT.calcularCosto(this.numTarjetaCredito));
-        }else{
-            s_taxi.setCosto(sT.calcularCosto());
+        }else if (forma_Pago == FormasPago.E){
+          s_taxi.setCosto(sT.calcularCosto());
         }
         
         //Confirmar servicio

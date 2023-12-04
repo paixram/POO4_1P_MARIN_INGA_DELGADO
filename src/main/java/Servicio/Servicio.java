@@ -136,7 +136,7 @@ public class Servicio {
     public String toString(){
         return "Fecha: "+this.fecha+"\nHora: "+this.hora+"\nDesde: "+this.desde+
                 "\nHasta: "+this.hasta+"\nConductor asignado: "+this.conductorAsignado.getNombres()+
-                "\nCosto: "+this.costo;
+                "\nCosto: "+this.getCosto();
     }
     
 }

@@ -1,2 +1,3 @@
 numeroServicio,tipoEncomienda,cantidadProductos,peso
 20002,MEDICAMENTOS,2,5.5
+22001,MEDICAMENTOS,6,14.3

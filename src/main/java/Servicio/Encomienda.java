@@ -38,7 +38,7 @@ public class Encomienda extends Servicio {
     public double calcularCosto() {
         double valor = dpe * this.peso;
         
-        valor += valor + 4;
+        valor += 4;
         
         System.out.println("Total a pagar: " + valor);
         
