@@ -189,7 +189,7 @@ public class Sistema {
                     break;
                 case 2:
                     //datos de su vehiculo
-                    Conductor.verificarDatVehiculo(r);
+                    Conductor.verificarDatVehiculos(r);
                     break;
 
                 default:

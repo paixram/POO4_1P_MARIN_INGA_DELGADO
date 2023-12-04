@@ -2,7 +2,9 @@ numeroServicio,tipoServicio,cedulaCliente,nombreConductor,desde,hasta,fecha,hora
 22000,T,0923547362,Juan,Samanes 4,Ceibos Norte,03/11/2023,17:30
 22001,E,0945698598,Julio,Kennedy,Norte de la Ciudad,05/04/2023,09:45
 22002,T,0912921094,John Doe,Prosperina,Campus ESPOL Gustavo Galindo,10/05/2023,12:30
-
 22003,E,0945698598,Juan,trinity,guasmo vice city,04/07/2023,3:00
 22004,E,0945698598,Juan,trinity,guasmo,03/07/2021,4:45
-22005,E,0945698598,Juan,gye,cuenca,09/08/2023,10:45
+22005,E,0945698598,Juan,Kenedy,Parwque,04/07/2023,3:34
+22006,T,0945698598,Juan,Union de bananeros,Guasmo Vice City,04/08/2023,12:00
+22007,E,0945698598,Juan,Trinity,Guasmo,12/06/2022,23:34
+22008,T,0945698598,Juan,guayas oeste,guayas este,05/08/2022,3:23

@@ -124,7 +124,6 @@ public class Pago {
             tuple = Archivo.FindBy(Archivo.MyPath + "Encomiendas.txt", clausule);
             Double op = Double.parseDouble(tuple.get(0).split(",")[3]) * 1.00;
             subtotal = String.valueOf(op);
-            Archivo.EscribirArchivo(Archivo.MyPath + "Pagos.txt", formaPagoString);
         }
         
         

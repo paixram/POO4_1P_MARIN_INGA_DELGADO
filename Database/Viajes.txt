@@ -1,3 +1,5 @@
 numeroServicio,numeroPasajeros,distanciaKM,subtotal
 22000,3,8.5,2.50
 22001,1,5.2,4.00
+22006,4,28.0,14.0
+22008,200,43.0,21.5

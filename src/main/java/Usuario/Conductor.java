@@ -174,15 +174,12 @@ public class Conductor extends Usuario {
      * @param chofer Conductor para el cual se verifica el tipo de vehículo.
      * @return Tipo de vehículo del conductor (carro o moto).
      */    
-    public static String verificarDatVehiculo(Conductor chofer){
-        Vehiculo vPropiedad = chofer.getVehiculo();
         
-        if (vPropiedad.tipo==TipoVehiculo.A){
-            return "Carro";
-        }else{
-            return "Moto";
-        }
+    public static void verificarDatVehiculos(Conductor chofer){
 
+        Vehiculo vPropiedad = chofer.getVehiculo();
+        System.out.println("Código vehículo: "+vPropiedad.getCodigoVehiculo()+"\nPlaca: "+vPropiedad.getPlaca()+"\nModelo: "+vPropiedad.getModelo()+
+                "\nMarca: "+vPropiedad.getMarca()+"\nTipo: "+vPropiedad.getTipo());
     }
     
     
