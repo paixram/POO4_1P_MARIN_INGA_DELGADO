@@ -3,3 +3,5 @@ numeroServicio,tipoServicio,cedulaCliente,nombreConductor,desde,hasta,fecha,hora
 22001,E,0945698598,Julio,Kennedy,Norte de la Ciudad,05/04/2023,09:45
 22002,T,0912921094,John Doe,Prosperina,Campus ESPOL Gustavo Galindo,10/05/2023,12:30
 
+22003,E,0945698598,Juan,trinity,guasmo vice city,04/07/2023,3:00
+22004,E,0945698598,Juan,trinity,guasmo,03/07/2021,4:45

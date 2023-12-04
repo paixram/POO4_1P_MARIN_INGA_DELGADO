@@ -122,13 +122,12 @@ public class Cliente extends Usuario{
             ArrayList<String> pago_cred = Archivo.FindBy(Archivo.MyPath + "Pagos.txt", clausule_pago);
             
             String[] data_pago = (pago_cred.get(0)).split(",");
-
+            
             FormasPago forma_pago = FormasPago.valueOf(data_pago[3]);
             
             // crear el vehiculo, conductor, servicio
             Vehiculo vh = new Vehiculo(codigo_vehi, placa_vehi, modelo_vehi, marca_vehi, tv);
             Conductor c = new Conductor(conductor_cedula, ec, vh, cedula_user, nombre_user, apellido_user, user_user, contraseña_user, celular, tu);
-            
             // Separar entre servicios taxi y encomiendas
             if(t_serv == TipoServicio.T) {
                 // Obtener  n pasajeros
@@ -142,10 +141,13 @@ public class Cliente extends Usuario{
                 
                 serviciosSolicitados.add(serv_n);
             }else if(t_serv == TipoServicio.E) {
+
                 HashMap<String, ArrayList<Object>> where_en = Archivo.CreateQuery(new Object[]{"numeroServicio", numero_serv});
                 ArrayList<String> encomienda = Archivo.FindBy(Archivo.MyPath + "Encomiendas.txt", where_en);
+
                 //Integer n_pasajeros = Integer.parseInt(viaje.get(0).split(",")[1]);
                 String[] enco = encomienda.get(0).split(",");
+
                 TipoEncomiendas te = TipoEncomiendas.valueOf(enco[1]);
                 Integer cp = Integer.parseInt(enco[2]);
                 Double peso = Double.parseDouble(enco[3]);

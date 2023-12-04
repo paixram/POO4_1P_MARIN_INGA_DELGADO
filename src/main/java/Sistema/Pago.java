@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import utils.Archivo;
 import utils.FormasPago;
+import utils.TipoServicio;
 /**
  *
  * @author José Miguel
@@ -92,15 +93,27 @@ public class Pago {
         
         // obtener num servicio
         // obtener viaje con num servicio
-        HashMap<String, ArrayList<Object>> clausule = Archivo.CreateQuery(new Object[]{"numeroServicio", this.servicio.getId()});
-        ArrayList<String> viaje_tuple = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", clausule);
+        HashMap<String, ArrayList<Object>> clausule = null;
+        ArrayList<String> tuple = null;
+        String subtotal = null;
+        if(this.servicio.getTipoServicio() == TipoServicio.T) {
+            clausule = Archivo.CreateQuery(new Object[]{"numeroServicio", this.servicio.getId()});
+            tuple = Archivo.FindBy(Archivo.MyPath + "Viajes.txt", clausule);
+            // obtener el subtotal
+            subtotal = (tuple.get(0).split(","))[3];
+        }else {
+            clausule = Archivo.CreateQuery(new Object[]{"numeroServicio", this.servicio.getId()});
+            tuple = Archivo.FindBy(Archivo.MyPath + "Encomiendas.txt", clausule);
+            Double op = Double.parseDouble(tuple.get(0).split(",")[3]) * 1.00;
+            subtotal = String.valueOf(op);
+            Archivo.EscribirArchivo(Archivo.MyPath + "Pagos.txt", formaPagoString);
+        }
         
-        // obtener el subtotal
-        String viaje_subtotal = (viaje_tuple.get(0).split(","))[3];
-        System.out.println("Subtotal: " + viaje_subtotal + "   Total: " + this.valorPagar);
+        
+        
         String lineaPago = String.format("%d,%s,%d,%s,%s,%s,%s",
                 numeroPago, fechaPagoString, this.servicio.getId(),
-                formaPagoString, cliente.getNumCedula(), viaje_subtotal,this.valorPagar);
+                formaPagoString, cliente.getNumCedula(), subtotal,this.valorPagar);
         Archivo.EscribirArchivo(Archivo.MyPath + "Pagos.txt", lineaPago);
         System.out.println("Pago guardado exitosamente.");
 }
